@@ -18,7 +18,6 @@
  */
 
 typedef union {
-;
 
   union {
     uint32_t _32;
@@ -35,6 +34,7 @@ typedef union {
     rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
     vaddr_t pc;
   };
+
 } x86_CPU_state;
 
 // decode
