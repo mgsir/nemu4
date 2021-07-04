@@ -18,10 +18,7 @@
  */
 
 typedef union {
-  struct{
-    rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-    vaddr_t pc;
-  };
+;
 
   union {
     uint32_t _32;
@@ -34,10 +31,10 @@ typedef union {
   /* In NEMU, rtlreg_t is exactly uint32_t. This makes RTL instructions
    * in PA2 able to directly access these registers.
    */
-
-
-  // AX, DX, CX, BX, BP, SI, DI, SP是16位寄存器;
-  // AL, DL, CL, BL, AH, DH, CH, BH是8位寄存器.
+  struct{
+    rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
+    vaddr_t pc;
+  };
 } x86_CPU_state;
 
 // decode
