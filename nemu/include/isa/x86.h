@@ -18,8 +18,10 @@
  */
 
 typedef union {
+  struct{
   vaddr_t pc;
   rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
+  };
 
   union {
     uint32_t _32;
