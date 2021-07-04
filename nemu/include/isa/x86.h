@@ -17,7 +17,7 @@
  * For more details about the register encoding scheme, see i386 manual.
  */
 
-typedef struct {
+typedef union {
   union {
     uint32_t _32;
     uint16_t _16;
@@ -30,8 +30,7 @@ typedef struct {
    * in PA2 able to directly access these registers.
    */
   rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
-  uint16_t ax,dx,cx,bx,bp,si,di,sp;
-  uint8_t al,dl,cl,bl,ah,dh,ch,bh;
+
 
   // AX, DX, CX, BX, BP, SI, DI, SP是16位寄存器;
   // AL, DL, CL, BL, AH, DH, CH, BH是8位寄存器.
