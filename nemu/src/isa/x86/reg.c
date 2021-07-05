@@ -40,8 +40,18 @@ void reg_test() {
 
   assert(pc_sample == cpu.pc);
 }
-
+  // rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
+  //   vaddr_t pc;
 void isa_reg_display() {
+  printf("------------------show all registers---------------\n");
+  printf("exa:%d\n",cpu.eax);
+  printf("ecx:%d\n",cpu.ecx);
+  printf("edx:%d\n",cpu.edx);
+  printf("esp:%d\n",cpu.esp);
+  printf("ebp:%d\n",cpu.ebp);
+  printf("esi:%d\n",cpu.esi);
+  printf("edi:%d\n",cpu.edi);
+  printf("pc:%d\n\n",cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
