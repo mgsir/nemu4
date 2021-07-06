@@ -3,6 +3,7 @@
 #include "watchpoint.h"
 //#include "/home/mg/ics2020/nemu/src/monitor/cpu-exec.c"
 
+#include <memory/paddr.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -42,6 +43,7 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
+static int cmd_x(char *args);
 
 static struct {
   char *name;
@@ -53,6 +55,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   {"si","Let the process suspended after N instructions are executed in one step",cmd_si},
   {"info","Print information of registers or watchpoint",cmd_info},
+  {"x","Scan memory",cmd_x},
 
   /* TODO: Add more commands */
 
@@ -109,6 +112,27 @@ static int cmd_info(char *args)
 {
   if(strcmp(args,"r") == 0) isa_reg_display();
   //if(args == "w") 
+  return 0;
+}
+
+static int cmd_x(char *args)
+{
+  char *token = " ";
+
+  char *strN = strtok(args,token);
+  uint32_t N = atoi(strN);
+  char *str_expr =  strtok(NULL,token);
+
+  paddr_t expr = atoi(str_expr); 
+  
+  printf("--------------------Memory Scan---------------------");
+  for(uint32_t i = 1; i <= N; ++i)
+  {
+    printf("%d:0x%08x\n",i,paddr_read(expr,4));
+  }
+
+  printf("--------------------Memory Scan---------------------");
+
   return 0;
 }
 
