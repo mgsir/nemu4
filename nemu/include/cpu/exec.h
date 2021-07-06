@@ -39,7 +39,7 @@ static inline void update_pc(DecodeExecState *s) {
 }
 
 
-// original version:  strcatf(log_asmbuf, __VA_ARGS__);
+// original version:  strcatf(log_asmbuf, ##__VA_ARGS__);
 #ifdef DEBUG
 #define print_asm(...) \
   do { \
