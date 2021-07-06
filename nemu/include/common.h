@@ -1,7 +1,7 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
-#define DEBUG
+#define DEBUG 1
 //#define DIFF_TEST
 
 #ifdef __ISA_riscv64__
