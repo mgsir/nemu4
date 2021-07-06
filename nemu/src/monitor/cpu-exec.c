@@ -74,8 +74,10 @@ void cpu_exec(uint64_t n) {
 
   uint64_t timer_start = get_time();
 
+  
+    /*'n' means pow(2,64) for unsigned number which a huge number(approximate infinite),
+     so the below loop means machine constantly execute instructions until it perform to end.*/
   for (; n > 0; n --) {
-    printf("%lu\n",n);
     vaddr_t this_pc = cpu.pc;
 
     /* Execute one instruction, including instruction fetch,
