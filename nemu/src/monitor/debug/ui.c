@@ -128,7 +128,8 @@ static int cmd_x(char *args)
   printf("\n--------------------Memory Scan---------------------\n");
   for(uint32_t i = 1; i <= N; ++i)
   {
-   printf("%d:0x%08x\n",i,paddr_read(expr,4));
+    printf("%d:0x%08x\n",i,paddr_read(expr,4));
+    expr += 4;
   }
 
   printf("--------------------Memory Scan---------------------\n");
