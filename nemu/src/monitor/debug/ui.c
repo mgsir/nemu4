@@ -88,9 +88,7 @@ static int cmd_help(char *args) {
 
 static int cmd_si(char *args)
 {
-  // Log("nemu: %s\33[0m at pc = " FMT_WORD "\n\n",
-  //     (nemu_state.state == NEMU_ABORT ? "\33[1;31mABORT" : (nemu_state.halt_ret == 0 ? "\33[1;32mHIT GOOD TRAP" : "\33[1;31mHIT BAD TRAP")),
-  //     nemu_state.halt_pc);
+
   if(args == NULL)
   {
     isa_exec_once();
@@ -100,9 +98,6 @@ static int cmd_si(char *args)
 
   uint32_t n = atoi(args);
   for(int i = 0; i < n; ++i ) { isa_exec_once(); print_asm();}
-
-
-  //Log()
 
   return 0;
 }
