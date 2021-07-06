@@ -28,7 +28,7 @@ static char* rl_gets() {
 }
 
 static int cmd_c(char *args) {
- if(args == NULL) printf("NULL\n");
+ //if(args == NULL) printf("NULL\n");
   cpu_exec(-1);
   return 0;
 }
@@ -49,7 +49,7 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-  {"si %d","execute instructions ",cmd_si},
+  {"si","execute instructions ",cmd_si},
 
   /* TODO: Add more commands */
 
@@ -82,7 +82,10 @@ static int cmd_help(char *args) {
 
 static int cmd_si(char *args)
 {
-  return -1;
+  uint32_t n =  atoi(args);
+  for(int i = 0; i < n; ++i ) { isa_exec_once();}
+  
+  return 0;
 }
 
 void ui_mainloop() {
