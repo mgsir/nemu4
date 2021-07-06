@@ -1,7 +1,7 @@
 #include <isa.h>
 #include "expr.h"
 #include "watchpoint.h"
-#include "/home/mg/ics2020/nemu/src/monitor/cpu-exec.c"
+//#include "/home/mg/ics2020/nemu/src/monitor/cpu-exec.c"
 
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -91,8 +91,8 @@ static int cmd_si(char *args)
   if(args == NULL)
   {
     isa_exec_once();
-  //  print_asm();
-   //asm_print();
+    // print_asm();
+    //asm_print();
 
     return 0;
   }
