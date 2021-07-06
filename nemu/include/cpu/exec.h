@@ -38,6 +38,8 @@ static inline void update_pc(DecodeExecState *s) {
   cpu.pc = (s->is_jmp ? s->jmp_pc : s->seq_pc);
 }
 
+
+// original version:  strcatf(log_asmbuf, __VA_ARGS__);
 #ifdef DEBUG
 #define print_asm(...) \
   do { \
