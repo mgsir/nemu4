@@ -1,6 +1,7 @@
 #include <isa.h>
 #include "expr.h"
 #include "watchpoint.h"
+#include "/home/mg/ics2020/nemu/src/monitor/cpu-exec.c"
 
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -84,14 +85,22 @@ static int cmd_help(char *args) {
 
 static int cmd_si(char *args)
 {
+  // Log("nemu: %s\33[0m at pc = " FMT_WORD "\n\n",
+  //     (nemu_state.state == NEMU_ABORT ? "\33[1;31mABORT" : (nemu_state.halt_ret == 0 ? "\33[1;32mHIT GOOD TRAP" : "\33[1;31mHIT BAD TRAP")),
+  //     nemu_state.halt_pc);
   if(args == NULL)
   {
     isa_exec_once();
+  //  print_asm();
+   //asm_print();
+
     return 0;
   }
 
-  uint32_t n =  atoi(args);
+  uint32_t n = atoi(args);
   for(int i = 0; i < n; ++i ) { isa_exec_once();}
+
+  //Log()
 
   return 0;
 }
@@ -100,7 +109,6 @@ static int cmd_info(char *args)
 {
   if(strcmp(args,"r") == 0) isa_reg_display();
   //if(args == "w") 
-
   return 0;
 }
 
