@@ -125,13 +125,13 @@ static int cmd_x(char *args)
 
   paddr_t expr = atoi(str_expr); 
   
-  printf("--------------------Memory Scan---------------------");
+  printf("\n--------------------Memory Scan---------------------");
   for(uint32_t i = 1; i <= N; ++i)
   {
     printf("%d:0x%08x\n",i,paddr_read(expr,4));
   }
 
-  printf("--------------------Memory Scan---------------------");
+  printf("--------------------Memory Scan---------------------\n");
 
   return 0;
 }
