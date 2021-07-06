@@ -122,9 +122,9 @@ static int cmd_x(char *args)
   char *strN = strtok(args,token);
   uint32_t N = atoi(strN);
   char *str_expr =  strtok(NULL,token);
-
-  paddr_t expr = atoi(str_expr); 
   
+  paddr_t expr = (paddr_t)strtol(str_expr,NULL,16); 
+
   printf("\n--------------------Memory Scan---------------------\n");
   for(uint32_t i = 1; i <= N; ++i)
   {
