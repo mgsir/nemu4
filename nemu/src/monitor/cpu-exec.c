@@ -75,7 +75,7 @@ void cpu_exec(uint64_t n) {
   uint64_t timer_start = get_time();
 
   for (; n > 0; n --) {
-    printf("%lu",n);
+    printf("%lu\n",n);
     vaddr_t this_pc = cpu.pc;
 
     /* Execute one instruction, including instruction fetch,
