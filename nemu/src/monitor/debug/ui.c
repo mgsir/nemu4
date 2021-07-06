@@ -40,6 +40,7 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 static int cmd_si(char *args);
+static int cmd_info(char *args);
 
 static struct {
   char *name;
@@ -49,7 +50,8 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-  {"si","execute instructions ",cmd_si},
+  {"si","Let the process suspended after N instructions are executed in one step",cmd_si},
+  {"info","Print information of registers or watchpoint",cmd_info},
 
   /* TODO: Add more commands */
 
@@ -90,6 +92,14 @@ static int cmd_si(char *args)
 
   uint32_t n =  atoi(args);
   for(int i = 0; i < n; ++i ) { isa_exec_once();}
+
+  return 0;
+}
+
+static int cmd_info(char *args)
+{
+  if(strcmp(args,"r") == 0) isa_reg_display();
+  //if(args == "w") 
 
   return 0;
 }
