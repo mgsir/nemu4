@@ -44,14 +44,14 @@ void reg_test() {
   //   vaddr_t pc;
 void isa_reg_display() {
   printf("------------------show all registers---------------\n");
-  printf("exa:%d\n",cpu.eax);
-  printf("ecx:%d\n",cpu.ecx);
-  printf("edx:%d\n",cpu.edx);
-  printf("esp:%d\n",cpu.esp);
-  printf("ebp:%d\n",cpu.ebp);
-  printf("esi:%d\n",cpu.esi);
-  printf("edi:%d\n",cpu.edi);
-  printf("pc:%d\n\n",cpu.pc);
+  printf("exa:%x\n",cpu.eax);
+  printf("ecx:%x\n",cpu.ecx);
+  printf("edx:%x\n",cpu.edx);
+  printf("esp:%x\n",cpu.esp);
+  printf("ebp:%x\n",cpu.ebp);
+  printf("esi:%x\n",cpu.esi);
+  printf("edi:%x\n",cpu.edi);
+  printf("pc:%x\n\n",cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
