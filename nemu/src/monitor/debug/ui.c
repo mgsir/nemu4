@@ -4,6 +4,7 @@
 //#include "/home/mg/ics2020/nemu/src/monitor/cpu-exec.c"
 
 #include <memory/paddr.h>
+#include <cpu/exec.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -94,7 +95,7 @@ static int cmd_si(char *args)
   if(args == NULL)
   {
     isa_exec_once();
-    // print_asm();
+   print_asm();
     //asm_print();
 
     return 0;
