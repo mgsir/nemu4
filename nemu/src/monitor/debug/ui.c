@@ -1,7 +1,6 @@
 #include <isa.h>
 #include "expr.h"
 #include "watchpoint.h"
-//#include "/home/mg/ics2020/nemu/src/monitor/cpu-exec.c"
 
 #include <memory/paddr.h>
 #include <cpu/exec.h>
@@ -95,14 +94,13 @@ static int cmd_si(char *args)
   if(args == NULL)
   {
     isa_exec_once();
-   print_asm();
-    //asm_print();
-
+    print_asm();
     return 0;
   }
 
   uint32_t n = atoi(args);
-  for(int i = 0; i < n; ++i ) { isa_exec_once();}
+  for(int i = 0; i < n; ++i ) { isa_exec_once(); print_asm();}
+
 
   //Log()
 
