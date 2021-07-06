@@ -125,6 +125,7 @@ static int cmd_x(char *args)
   
   paddr_t expr = (paddr_t)strtol(str_expr,NULL,16); 
 
+  printf("%u",expr);
   printf("\n--------------------Memory Scan---------------------\n");
   for(uint32_t i = 1; i <= N; ++i)
   {
