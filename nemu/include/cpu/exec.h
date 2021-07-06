@@ -47,7 +47,7 @@ static inline void update_pc(DecodeExecState *s) {
     strcatf(log_asmbuf,##__VA_ARGS__,""); \
     printf("%s\n",log_asmbuf); \
     memset(log_asmbuf,0,sizeof(strlen(log_asmbuf))); \
-  } while (0)
+  } while (0);
 #else
 #define print_asm(...)
 #endif
