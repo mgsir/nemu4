@@ -144,6 +144,8 @@ static bool make_token(char *e) {
   return true;
 }
 
+
+
 bool check_parentheses(uint32_t p, uint32_t q)
 {
   if(tokens[p].type != '(' || tokens[q].type != ')') return false;
@@ -154,7 +156,33 @@ bool check_parentheses(uint32_t p, uint32_t q)
 
 uint32_t find_main_operator(uint32_t p, uint32_t q)
 {
-  return 0;
+
+  uint32_t mainop_pos = p;
+  char mainop = ' ';
+  bool _lock = false;
+
+  for(u_int32_t i = p; i <= q; ++i)
+  {
+    if(_lock == false) {
+      if(tokens[i].type == '(') _lock = true;
+      else {
+        if( (tokens[i].type == '+' || tokens[i].type == '-') && (mainop == '*' || mainop == '/' || mainop == ' ')) // low power
+        {
+          mainop = tokens[i].type;
+          mainop_pos = i;
+        }
+        else if((tokens[i].type == '*' || tokens[i].type == '/') && mainop == ' ')
+        {
+          mainop = tokens[i].type;
+          mainop_pos = i;
+        }
+      }
+    }else{
+      if(tokens[i].type == ')') _lock = false; 
+    }
+  }
+
+  return mainop_pos;
 }
 
 uint32_t eval(uint32_t p,  uint32_t q)
