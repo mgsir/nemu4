@@ -89,16 +89,16 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type)
         {
-        case 256:
-          temp.type = 256;
+        case TK_NOTYPE:
+          temp.type = TK_NOTYPE;
           if (substr_len > 32)
           {
             substr_len = 32;
           }
           strncpy(temp.str, e + position - substr_len, substr_len);
           break;
-        case 257:
-          temp.type = 257;
+        case TK_EQ:
+          temp.type = TK_EQ;
           strcpy(temp.str, "==");
           break;
         case '+':
@@ -125,7 +125,7 @@ static bool make_token(char *e) {
           temp.type = ')';
           strcpy(temp.str, ")");
           break;
-       case  TK_NUM:
+        case TK_NUM:
           temp.type = TK_NUM;
           if (substr_len > 32)
           {
