@@ -44,7 +44,7 @@ static inline void gen_rand_expr() {
     strcat(buf,")");
     break; 
   default: 
-    gen_rand_expr(); 
+    gen_rand_expr(); 1
 
     gen_rand_expr();
     break;
