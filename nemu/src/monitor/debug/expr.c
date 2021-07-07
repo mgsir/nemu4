@@ -91,10 +91,7 @@ static bool make_token(char *e) {
         {
         case TK_NOTYPE:
           temp.type = TK_NOTYPE;
-          if (substr_len > 32)
-          {
-            substr_len = 32;
-          }
+          assert(substr_len <= 31);
           strncpy(temp.str, e + position - substr_len, substr_len);
           break;
         case TK_EQ:
@@ -127,10 +124,7 @@ static bool make_token(char *e) {
           break;
         case TK_NUM:
           temp.type = TK_NUM;
-          if (substr_len > 32)
-          {
-            substr_len = 32;
-          }
+          assert(substr_len <= 31);
           strncpy(temp.str, e + position - substr_len, substr_len);
         }
 
