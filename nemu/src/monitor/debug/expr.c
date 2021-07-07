@@ -1,4 +1,5 @@
 #include <isa.h>
+#include<stdlib.h>
 
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
@@ -143,6 +144,15 @@ static bool make_token(char *e) {
   return true;
 }
 
+uint32_t eval(char *e, int p, int q)
+{
+  if(p > q)  assert(0);
+  else if(p == q) return (uint32_t)strtol(e[p]+"",NULL,10);
+  else {
+
+  }
+  return 0;
+}
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
