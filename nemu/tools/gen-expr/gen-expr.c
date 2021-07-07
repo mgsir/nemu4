@@ -16,8 +16,39 @@ static char *code_format =
 "  return 0; "
 "}";
 
+static void gen_rand_op()
+{
+
+}
+
+static void gen_num()
+{
+  
+}
+static char gen_rand_op()
+{
+    return '+';
+}
+
 static inline void gen_rand_expr() {
   buf[0] = '\0';
+
+  switch (rand() % 10)
+  {
+  case 0:
+    strcat(buf,utoa((__int32_t) rand() % 10));
+    break;
+  case 1:
+    strcat(buf,"(");
+    gen_rand_expr();
+    strcat(buf,")");
+    break; 
+  default: 
+    gen_rand_expr(); 
+
+    gen_rand_expr();
+    break;
+  }
 }
 
 int main(int argc, char *argv[]) {
