@@ -144,11 +144,21 @@ static bool make_token(char *e) {
   return true;
 }
 
-uint32_t eval(char *e, int p, int q)
+bool check_parentheses(char *e,uint32_t p, uint32_t q)
+{
+  if(e[p] != '(' || e[q] != ')') return false;
+
+  for(uint32_t i = p+1; i < q; ++i){ if(e[i] == ')') return false; }
+  return true;
+}
+
+uint32_t eval(char *e, uint32_t p,  uint32_t q)
 {
   if(p > q)  assert(0);
   else if(p == q) return (uint32_t)strtol(e[p]+"",NULL,10);
-  else {
+  else if(check_parentheses(e,p,q) == true) return eval(e,p-1,q-1);
+  else
+  {
 
   }
   return 0;
