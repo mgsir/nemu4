@@ -144,21 +144,39 @@ static bool make_token(char *e) {
   return true;
 }
 
-bool check_parentheses(char *e,uint32_t p, uint32_t q)
+bool check_parentheses(uint32_t p, uint32_t q)
 {
-  if(e[p] != '(' || e[q] != ')') return false;
+  if(tokens[p].type != '(' || tokens[q].type != ')') return false;
 
-  for(uint32_t i = p+1; i < q; ++i){ if(e[i] == ')') return false; }
+  for(uint32_t i = p+1; i < q; ++i){ if(tokens[i].type == ')') return false; }
   return true;
 }
 
-uint32_t eval(char *e, uint32_t p,  uint32_t q)
+uint32_t find_main_operator(uint32_t p, uint32_t q)
+{
+  return 0;
+}
+
+uint32_t eval(uint32_t p,  uint32_t q)
 {
   if(p > q)  assert(0);
-  else if(p == q) return (uint32_t)strtol(e[p]+"",NULL,10);
-  else if(check_parentheses(e,p,q) == true) return eval(e,p-1,q-1);
+  else if(p == q) return (uint32_t)strtol(tokens[p].str,NULL,10);
+  else if(check_parentheses(p,q) == true) return eval(p-1,q-1);
   else
   {
+    uint32_t pos = find_main_operator(p,q);
+    switch (tokens[pos].type)
+    {
+      case '+':
+        return eval(p,pos-1) + eval(pos+1,q);
+      case '-':
+        return eval(p,pos-1) - eval(pos+1,q);
+      case '*':
+        return eval(p,pos-1) * eval(pos+1,q);
+      case '/':
+        return eval(p,pos-1) / eval(pos+1,q);
+      default: assert(0);
+    }
 
   }
   return 0;
