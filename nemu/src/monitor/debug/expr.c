@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_EQ, TK_NUM
 
   /* TODO: Add more token types */
 
@@ -23,7 +23,13 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
+  {"\\-", '-'},         
+  {"\\*",'*'},
+  {"\\/",'/'},
+  {"\\(",'('},
+  {"\\)",')'},
   {"==", TK_EQ},        // equal
+  {"[0-9]*",TK_NUM},    // number
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -49,7 +55,7 @@ void init_regex() {
 
 typedef struct token {
   int type;
-  char str[32];
+  char str[32] ;
 } Token;
 
 static Token tokens[32] __attribute__((used)) = {};
@@ -78,10 +84,57 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
+        struct token temp;
+        memset(temp.str,0,sizeof(temp.str));
 
-        switch (rules[i].token_type) {
-          default: TODO();
+        switch (rules[i].token_type)
+        {
+        case 256:
+          temp.type = 256;
+          if (substr_len > 32)
+          {
+            substr_len = 32;
+          }
+          strncpy(temp.str, e + position - substr_len, substr_len);
+          break;
+        case 257:
+          temp.type = 257;
+          strcpy(temp.str, "==");
+          break;
+        case '+':
+          temp.type = '+';
+          strcpy(temp.str, "+");
+          break;
+        case '-':
+          temp.type = '-';
+          strcpy(temp.str, "-");
+          break;
+        case '*':
+          temp.type = '*';
+          strcpy(temp.str, "*");
+          break;
+        case '/':
+          temp.type = '/';
+          strcpy(temp.str, "/");
+          break;
+        case '(':
+          temp.type = '(';
+          strcpy(temp.str, "(");
+          break;
+        case ')':
+          temp.type = ')';
+          strcpy(temp.str, ")");
+          break;
+       case  TK_NUM:
+          temp.type = TK_NUM;
+          if (substr_len > 32)
+          {
+            substr_len = 32;
+          }
+          strncpy(temp.str, e + position - substr_len, substr_len);
         }
+
+        tokens[nr_token++] = temp;
 
         break;
       }
