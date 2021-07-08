@@ -234,7 +234,7 @@ void check_regex()
   FILE * fpr;
   FILE * fpw;
   assert((fpr = fopen("/home/mg/ics2020/nemu/tools/gen-expr/input","r")) != NULL);
-  assert((fpw = fopen("/home/mg/ics2020/nemu/tools/gen-expr/ouput","w")) != NULL);
+  assert((fpw = fopen("/home/mg/ics2020/nemu/tools/gen-expr/ouput","a")) != NULL);
 
   char buffer[1025];
 
