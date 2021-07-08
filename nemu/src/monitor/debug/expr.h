@@ -4,5 +4,5 @@
 #include <common.h>
 
 word_t expr(char *, bool *);
-
+void check_regex();
 #endif

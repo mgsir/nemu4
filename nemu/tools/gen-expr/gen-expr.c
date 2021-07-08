@@ -16,27 +16,36 @@ static char *code_format =
 "  return 0; "
 "}";
 
-static void gen_rand_op()
-{
+static char str_num[100] = {};
+static char ops[4][2] = {"+","-","*","/"};
+static int iterator_num = 0;
 
+static char * gen_rand_op()
+{
+    return ops[rand() % 4];
 }
 
-static void gen_num()
+static char *gen_num()
 {
-  
-}
-static char gen_rand_op()
-{
-    return '+';
+  uint32_t num = rand() % 2+1;
+  memset(str_num,0,sizeof(str_num));
+  char nums[9][2] = {"1","2","3","4","5","6","7","8","9"};
+  for(uint32_t i = 0; i < num; ++i)
+  {
+    strcat(str_num,nums[rand()%9]);
+  }
+  return str_num;
 }
 
 static inline void gen_rand_expr() {
-  buf[0] = '\0';
+  iterator_num++;
+  if(iterator_num > 100) return;
+  if(strlen(buf) > 65535) return;
 
-  switch (rand() % 10)
+  switch (rand() % 3)
   {
   case 0:
-    strcat(buf,utoa((__int32_t) rand() % 10));
+    strcat(buf,gen_num());
     break;
   case 1:
     strcat(buf,"(");
@@ -44,11 +53,12 @@ static inline void gen_rand_expr() {
     strcat(buf,")");
     break; 
   default: 
-    gen_rand_expr(); 1
-
+    gen_rand_expr(); 
+    strcat(buf,gen_rand_op());
     gen_rand_expr();
     break;
   }
+
 }
 
 int main(int argc, char *argv[]) {
@@ -60,6 +70,10 @@ int main(int argc, char *argv[]) {
   }
   int i;
   for (i = 0; i < loop; i ++) {
+    
+    memset(buf,0,sizeof(buf));
+    iterator_num = 0;
+
     gen_rand_expr();
 
     sprintf(code_buf, code_format, buf);
@@ -79,7 +93,8 @@ int main(int argc, char *argv[]) {
     fscanf(fp, "%d", &result);
     pclose(fp);
 
-    printf("%u %s\n", result, buf);
+    printf("%u %s\n", result, buf );
+  
   }
   return 0;
 }

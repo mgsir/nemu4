@@ -7,6 +7,7 @@
 void init_log(const char *log_file);
 void init_mem();
 void init_regex();
+void check_regex();
 void init_wp_pool();
 void init_difftest(char *ref_so_file, long img_size, int port);
 
@@ -107,6 +108,9 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Compile the regular expressions. */
   init_regex();
+
+  /* Check the regular expressions. */
+  check_regex();
 
   /* Initialize the watchpoint pool. */
   init_wp_pool();

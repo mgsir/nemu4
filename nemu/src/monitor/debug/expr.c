@@ -1,5 +1,7 @@
 #include <isa.h>
 #include<stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
@@ -34,6 +36,7 @@ static struct rule {
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
+#define TOK_STR_LEN 30000
 
 static regex_t re[NR_REGEX] = {};
 
@@ -52,11 +55,12 @@ void init_regex() {
       panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
     }
   }
+
 }
 
 typedef struct token {
   int type;
-  char str[32] ;
+  char str[TOK_STR_LEN+1] ;
 } Token;
 
 static Token tokens[32] __attribute__((used)) = {};
@@ -92,7 +96,7 @@ static bool make_token(char *e) {
         {
         case TK_NOTYPE:
           temp.type = TK_NOTYPE;
-          assert(substr_len <= 31);
+          assert(substr_len <= TOK_STR_LEN);
           strncpy(temp.str, e + position - substr_len, substr_len);
           break;
         case TK_EQ:
@@ -125,7 +129,7 @@ static bool make_token(char *e) {
           break;
         case TK_NUM:
           temp.type = TK_NUM;
-          assert(substr_len <= 31);
+          assert(substr_len <= TOK_STR_LEN);
           strncpy(temp.str, e + position - substr_len, substr_len);
         }
 
@@ -202,6 +206,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
       case '*':
         return eval(p,pos-1) * eval(pos+1,q);
       case '/':
+        assert(eval(pos+1,q) != 0);
         return eval(p,pos-1) / eval(pos+1,q);
       default: assert(0);
     }
@@ -217,7 +222,35 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
-  return 0;
+  *success = true;
+  return eval(0,strlen(e));
 }
+
+
+void check_regex()
+{
+  FILE * fpr;
+  FILE * fpw;
+  assert((fpr = fopen("/home/mg/ics2020/nemu/tools/gen-expr/input","r")) != NULL);
+  assert((fpw = fopen("/home/mg/ics2020/nemu/tools/gen-expr/ouput","w")) != NULL);
+
+  char buffer[1024];
+
+  while(!feof(fpr))
+  {
+    memset(buffer,0,sizeof(buffer));
+    fgets(buffer,1024,fpr);
+    char * ans = strtok(buffer," ");
+    char *e = strtok(NULL," ");
+
+    bool success = false;
+    uint32_t result = expr(e, &success);
+
+    if(success)
+    {
+      fprintf(fpw,"%s %s %u\n",ans,e,result );
+    }else fprintf(fpw,"%s %s ileagel\n",ans,e);
+  }
+
+}
+
