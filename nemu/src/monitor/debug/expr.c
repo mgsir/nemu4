@@ -225,10 +225,6 @@ word_t expr(char *e, bool *success) {
   *success = true;
    return eval(0,nr_token-1);
 
-  //  for(int i = 0; i < nr_token; ++i)
-  //  {
-  //    printf("%s",tokens[i].str);
-  //  }
 }
 
 
@@ -237,7 +233,7 @@ void check_regex()
   FILE * fpr;
   FILE * fpw;
   assert((fpr = fopen("/home/mg/ics2020/nemu/tools/gen-expr/input","r")) != NULL);
-  assert((fpw = fopen("/home/mg/ics2020/nemu/tools/gen-expr/ouput","a+")) != NULL);
+  assert((fpw = fopen("/home/mg/ics2020/nemu/tools/gen-expr/ouput","w")) != NULL);
 
   char buffer[1024];
 
