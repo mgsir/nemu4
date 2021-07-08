@@ -191,10 +191,8 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
 }
 
 uint32_t eval(uint32_t p,  uint32_t q)
-{ for(int i = p; i <= q; ++i)
-    {
-      printf("%s",tokens[i].str);
-    }
+{ 
+ 
   if(p > q)  return 0;
   else if(p == q) return (uint32_t)strtol(tokens[p].str,NULL,10);
   else if(check_parentheses(p,q) == true) return eval(p+1,q-1);
@@ -202,7 +200,10 @@ uint32_t eval(uint32_t p,  uint32_t q)
   {
     uint32_t pos = find_main_operator(p,q);
     printf("sign: %c\n",tokens[pos].type);
-   
+    for(int i = p; i <= q; ++i)
+    {
+      printf("%s",tokens[i].str);
+    }
     switch (tokens[pos].type)
     {
       case '+':
