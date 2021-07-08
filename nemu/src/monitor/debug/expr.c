@@ -206,6 +206,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
   else if(p == q) return (uint32_t)strtol(tokens[p].str,NULL,10);
   else if(check_parentheses(p,q) == true) 
   {
+    printf("p:%u,q:%u\n",p,q);
     for (int i = p; i <= q; ++i)
     {
       printf("%s", tokens[i].str);
@@ -216,6 +217,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
   {
     uint32_t pos = find_main_operator(p,q);
     printf("sign: %c num:%d\n",tokens[pos].type,pos);
+    printf("p:%u,q:%u\n",p,q);
     for(int i = p; i <= q; ++i)
     {
       printf("%s",tokens[i].str);
