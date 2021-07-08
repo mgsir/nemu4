@@ -163,7 +163,7 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
 
   uint32_t mainop_pos = p;
   char mainop = ' ';
-  int _lock = 0;
+  uint32_t _lock = 0;
 
   for(u_int32_t i = p; i <= q; ++i)
   {
@@ -183,7 +183,7 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
         }
       }
     }else{
-      if(tokens[i].type == ')') _lock--; 
+      if(tokens[i].type == ')') --_lock; 
     }
   }
 
@@ -198,6 +198,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
   else
   {
     uint32_t pos = find_main_operator(p,q);
+      printf("sign: %c\n",tokens[pos].type);
     switch (tokens[pos].type)
     {
       case '+':
