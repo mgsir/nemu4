@@ -247,7 +247,9 @@ void check_regex()
     char *e = strtok(NULL, " ");
     bool success = false;
     if(e[strlen(e) - 1] == '\n')e[strlen(e)-1] = '\0';
+
     uint32_t result = expr(e, &success);
+
     printf("result: %d\n",result);
     if(success)
     {
