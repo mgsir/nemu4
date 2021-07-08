@@ -154,8 +154,13 @@ bool check_parentheses(uint32_t p, uint32_t q)
 {
   if(tokens[p].type != '(' || tokens[q].type != ')') return false;
 
-  for(uint32_t i = p+1; i < q; ++i){ if(tokens[i].type == ')') {return false;} }
-  return true;
+  uint32_t _lock = 0;
+  for(u_int32_t i = p; i <= q; ++i)
+  {
+    if(tokens[i].type == '(') ++ _lock;
+    else if(tokens[i].type == ')') -- _lock;
+  }
+  return _lock == 0 ? true : false;
 }
 
 uint32_t find_main_operator(uint32_t p, uint32_t q)
