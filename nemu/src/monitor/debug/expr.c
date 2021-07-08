@@ -134,7 +134,6 @@ static bool make_token(char *e) {
 
         tokens[nr_token++] = temp;
         
-        printf("%d %s", nr_token,temp.str);
 
         break;
       }
