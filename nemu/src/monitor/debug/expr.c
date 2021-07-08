@@ -246,18 +246,18 @@ void check_regex()
   {
     memset(buffer, 0, sizeof(buffer));
     fgets(buffer, 1024, fpr);
-    char *ans;
-    ans = strtok(buffer, " ");
+    // char *ans;
+    strtok(buffer, " ");
     char *e = strtok(NULL, " ");
 
     bool success = false;
     e[strlen(e)-1] = '\0';
-    uint32_t result = expr(e, &success);
+     expr(e, &success);
 
-    if(success)
-    {
-      fprintf(fpw,"%s %s %u\n",ans,e,result );
-    }else fprintf(fpw,"%s %s ileagel\n",ans,e);
+    // if(success)
+    // {
+    //   fprintf(fpw,"%s %s %u\n",ans,e,result );
+    // }else fprintf(fpw,"%s %s ileagel\n",ans,e);
   }
 
 }
