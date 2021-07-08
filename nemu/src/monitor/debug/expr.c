@@ -242,25 +242,23 @@ void check_regex()
 
   char buffer[1024];
 
-  // while(!feof(fpr))
-  // {
-    memset(buffer,0,sizeof(buffer));
-    fgets(buffer,1024,fpr);
-   // char *ans;
-  strtok(buffer," ");
-    char *e = strtok(NULL," ");
+  while(!feof(fpr))
+  {
+    memset(buffer, 0, sizeof(buffer));
+    fgets(buffer, 1024, fpr);
+    char *ans;
+    ans = strtok(buffer, " ");
+    char *e = strtok(NULL, " ");
 
     bool success = false;
     e[strlen(e)-1] = '\0';
-    // printf("%s",e);
     uint32_t result = expr(e, &success);
-    printf("\n result%u",result);
 
-  //   if(success)
-  //   {
-  //     fprintf(fpw,"%s %s %u\n",ans,e,result );
-  //   }else fprintf(fpw,"%s %s ileagel\n",ans,e);
-  // }
+    if(success)
+    {
+      fprintf(fpw,"%s %s %u\n",ans,e,result );
+    }else fprintf(fpw,"%s %s ileagel\n",ans,e);
+  }
 
 }
 
