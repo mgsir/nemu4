@@ -132,8 +132,8 @@ static bool make_token(char *e) {
           strncpy(temp.str, e + position - substr_len, substr_len);
         }
 
-        tokens[nr_token++] = temp;
-        
+        tokens[nr_token] = temp;
+        ++nr_token;
 
         break;
       }
