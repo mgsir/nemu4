@@ -160,6 +160,7 @@ bool check_parentheses(uint32_t p, uint32_t q)
     if(tokens[i].type == '(') ++ _lock;
     else if(tokens[i].type == ')') -- _lock;
   }
+
   return _lock == 0 ? true : false;
 }
 
