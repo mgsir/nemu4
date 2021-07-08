@@ -242,10 +242,10 @@ void check_regex()
 
   char buffer[1024];
 
-  while(fpr != NULL)
+  while(true)
   {
     memset(buffer, 0, sizeof(buffer));
-    fgets(buffer, 1024, fpr);
+    if(fgets(buffer, 1024, fpr) == 0) break;
     char *ans;
     ans = strtok(buffer, " ");
     char *e = strtok(NULL, " ");
