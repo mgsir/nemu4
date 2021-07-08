@@ -163,18 +163,18 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
 
   uint32_t mainop_pos = p;
   char mainop = ' ';
-  bool _lock = false;
+  int _lock = 0;
 
   for(u_int32_t i = p; i <= q; ++i)
   {
-    if(_lock == false) {
-      if(tokens[i].type == '(') _lock = true;
+    if(_lock == 0) {
+      if(tokens[i].type == '(')  ++ _lock ;
       else {
         if( (tokens[i].type == '+' || tokens[i].type == '-') && (mainop == '*' || mainop == '/' || mainop == ' ')) // low power
         {
           mainop = tokens[i].type;
           mainop_pos = i;
-          return i;
+          // return i;
         }
         else if((tokens[i].type == '*' || tokens[i].type == '/') && mainop == ' ')
         {
@@ -183,7 +183,7 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
         }
       }
     }else{
-      if(tokens[i].type == ')') _lock = false; 
+      if(tokens[i].type == ')') _lock--; 
     }
   }
 
