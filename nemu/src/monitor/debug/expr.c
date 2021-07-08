@@ -248,7 +248,7 @@ void check_regex()
     bool success = false;
     if(e[strlen(e) - 1] == '\n')e[strlen(e)-1] = '\0';
     uint32_t result = expr(e, &success);
-
+    printf("result: %d\n",result);
     if(success)
     {
       fprintf(fpw,"%s %s %u\n",ans,e,result );
