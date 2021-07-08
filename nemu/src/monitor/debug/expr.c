@@ -174,6 +174,7 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
         {
           mainop = tokens[i].type;
           mainop_pos = i;
+          return i;
         }
         else if((tokens[i].type == '*' || tokens[i].type == '/') && mainop == ' ')
         {
