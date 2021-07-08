@@ -154,13 +154,15 @@ bool check_parentheses(uint32_t p, uint32_t q)
 {
   if(tokens[p].type != '(' || tokens[q].type != ')') return false;
 
-  uint32_t _lock = 0;
-  for(u_int32_t i = p; i <= q; ++i)
+  uint32_t _lock = 1;
+  for(u_int32_t i = p+1; i < q; ++i)
   {
     if(tokens[i].type == '(') ++ _lock;
     else if(tokens[i].type == ')') -- _lock;
+    if(_lock == 0) return false;
   }
 
+  --_lock;
   return _lock == 0 ? true : false;
 }
 
