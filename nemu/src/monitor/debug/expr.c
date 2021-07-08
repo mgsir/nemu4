@@ -244,6 +244,7 @@ void check_regex()
     char *e = strtok(NULL," ");
 
     bool success = false;
+    printf("%s\n",e);
     uint32_t result = expr(e, &success);
 
     if(success)
