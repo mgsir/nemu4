@@ -192,6 +192,7 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
       }
     }else{
       if(tokens[i].type == ')') -- _lock; 
+      else if(tokens[i].type == '(') ++ _lock;
     }
   }
 
