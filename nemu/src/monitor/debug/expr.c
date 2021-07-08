@@ -206,6 +206,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
       case '*':
         return eval(p,pos-1) * eval(pos+1,q);
       case '/':
+        
         assert(eval(pos+1,q) != 0);
         return eval(p,pos-1) / eval(pos+1,q);
       default: assert(0);
@@ -235,7 +236,7 @@ void check_regex()
   assert((fpr = fopen("/home/mg/ics2020/nemu/tools/gen-expr/input","r")) != NULL);
   assert((fpw = fopen("/home/mg/ics2020/nemu/tools/gen-expr/ouput","w")) != NULL);
 
-  char buffer[1024];
+  char buffer[1025];
 
   while(true)
   {
