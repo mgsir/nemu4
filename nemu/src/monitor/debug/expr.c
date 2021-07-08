@@ -37,6 +37,7 @@ static struct rule {
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 #define TOK_STR_LEN 30000
+#define TOK_SIZE 1000
 
 static regex_t re[NR_REGEX] = {};
 
@@ -63,7 +64,7 @@ typedef struct token {
   char str[TOK_STR_LEN+1] ;
 } Token;
 
-static Token tokens[32] __attribute__((used)) = {};
+static Token tokens[TOK_SIZE] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 static bool make_token(char *e) {
