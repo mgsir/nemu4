@@ -246,7 +246,7 @@ void check_regex()
     ans = strtok(buffer, " ");
     char *e = strtok(NULL, " ");
     bool success = false;
-    e[strlen(e)-1] = '\0';
+    if(e[strlen(e) - 1] == '\n')e[strlen(e)-1] = '\0';
     uint32_t result = expr(e, &success);
 
     if(success)
