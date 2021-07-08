@@ -251,7 +251,7 @@ void check_regex()
     char *e = strtok(NULL," ");
 
     bool success = false;
-    e[strlen(e)-2] = '\0';
+    e[strlen(e)-1] = '\0';
     // printf("%s",e);
     uint32_t result = expr(e, &success);
     printf("\n result%u",result);
