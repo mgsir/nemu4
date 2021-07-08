@@ -192,27 +192,27 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
 
 uint32_t eval(uint32_t p,  uint32_t q)
 {
-  // if(p > q)  return 0;
-  // else if(p == q) return (uint32_t)strtol(tokens[p].str,NULL,10);
-  // else if(check_parentheses(p,q) == true) return eval(p-1,q-1);
-  // else
-  // {
-  //   uint32_t pos = find_main_operator(p,q);
-  //   switch (tokens[pos].type)
-  //   {
-  //     case '+':
-  //       return eval(p,pos-1) + eval(pos+1,q);
-  //     case '-':
-  //       return eval(p,pos-1) - eval(pos+1,q);
-  //     case '*':
-  //       return eval(p,pos-1) * eval(pos+1,q);
-  //     case '/':
-  //       assert(eval(pos+1,q) != 0);
-  //       return eval(p,pos-1) / eval(pos+1,q);
-  //     default: assert(0);
-  //   }
+  if(p > q)  return 0;
+  else if(p == q) return (uint32_t)strtol(tokens[p].str,NULL,10);
+  else if(check_parentheses(p,q) == true) return eval(p-1,q-1);
+  else
+  {
+    uint32_t pos = find_main_operator(p,q);
+    switch (tokens[pos].type)
+    {
+      case '+':
+        return eval(p,pos-1) + eval(pos+1,q);
+      case '-':
+        return eval(p,pos-1) - eval(pos+1,q);
+      case '*':
+        return eval(p,pos-1) * eval(pos+1,q);
+      case '/':
+        assert(eval(pos+1,q) != 0);
+        return eval(p,pos-1) / eval(pos+1,q);
+      default: assert(0);
+    }
 
-  // }
+  }
   return 0;
 }
 
@@ -224,13 +224,12 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
-   eval(0,nr_token-1);
+   return eval(0,nr_token-1);
 
-   for(int i = 0; i < nr_token; ++i)
-   {
-     printf("%s",tokens[i].str);
-   }
-   return 0;
+  //  for(int i = 0; i < nr_token; ++i)
+  //  {
+  //    printf("%s",tokens[i].str);
+  //  }
 }
 
 
