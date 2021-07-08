@@ -244,6 +244,7 @@ void check_regex()
     char *e = strtok(NULL," ");
 
     bool success = false;
+    e[strlen(e)-2] = '\0';
     printf("%s",e);
     uint32_t result = expr(e, &success);
 
