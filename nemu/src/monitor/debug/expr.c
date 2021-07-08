@@ -135,6 +135,7 @@ static bool make_token(char *e) {
 
         tokens[nr_token++] = temp;
 
+      printf("%s",temp.str);
         break;
       }
     }
@@ -220,7 +221,6 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  printf("123");
 
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
