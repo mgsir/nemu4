@@ -252,7 +252,8 @@ void check_regex()
 
     bool success = false;
     e[strlen(e)-1] = '\0';
-     expr(e, &success);
+    expr(e, &success);
+    printf("123");
 
     // if(success)
     // {
