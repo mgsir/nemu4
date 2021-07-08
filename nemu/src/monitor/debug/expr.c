@@ -199,7 +199,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
   else
   {
     uint32_t pos = find_main_operator(p,q);
-    printf("sign: %c\n",tokens[pos].type);
+    printf("sign: %c num:%d\n",tokens[pos].type,pos);
     for(int i = p; i <= q; ++i)
     {
       printf("%s",tokens[i].str);
