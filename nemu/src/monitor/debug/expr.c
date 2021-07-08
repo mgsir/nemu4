@@ -242,8 +242,8 @@ void check_regex()
 
   char buffer[1024];
 
-  while(!feof(fpr))
-  {
+  // while(!feof(fpr))
+  // {
     memset(buffer, 0, sizeof(buffer));
     fgets(buffer, 1024, fpr);
     // char *ans;
@@ -253,13 +253,12 @@ void check_regex()
     bool success = false;
     e[strlen(e)-1] = '\0';
     expr(e, &success);
-    printf("123");
 
     // if(success)
     // {
     //   fprintf(fpw,"%s %s %u\n",ans,e,result );
     // }else fprintf(fpw,"%s %s ileagel\n",ans,e);
-  }
+  // }
 
 }
 
