@@ -235,7 +235,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
       case '*':
         return eval(p,pos-1) * eval(pos+1,q);
       case '/':
-      //  assert(eval(pos+1,q) != 0);
+        assert(eval(pos+1,q) != 0);
         return eval(p,pos-1) / eval(pos+1,q);
       default: assert(0);
     }
