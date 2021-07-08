@@ -253,7 +253,7 @@ void check_regex()
 
     bool success = false;
     e[strlen(e)-2] = '\0';
-    printf("%s",e);
+    // printf("%s",e);
     uint32_t result = expr(e, &success);
     printf("\n result%u",result);
 
