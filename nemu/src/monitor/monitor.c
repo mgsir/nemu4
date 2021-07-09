@@ -110,7 +110,7 @@ void init_monitor(int argc, char *argv[]) {
   init_regex();
 
   /* Check the regular expressions. */
-  check_regex();
+  //check_regex();
 
   /* Initialize the watchpoint pool. */
   init_wp_pool();
