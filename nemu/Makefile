@@ -105,7 +105,8 @@ run-env: $(BINARY) $(DIFF_REF_SO)
 run: run-env
 	$(call git_commit, "run")
 	$(NEMU_EXEC)
-
+test: run-env
+	$(NEMU_EXEC) < in.txt
 gdb: run-env
 	$(call git_commit, "gdb")
 	gdb -s $(BINARY) --args $(NEMU_EXEC)
