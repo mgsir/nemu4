@@ -52,7 +52,7 @@ void isa_reg_display() {
   printf("ebp:0x%08x\n",cpu.ebp);
   printf("esi:0x%08x\n",cpu.esi);
   printf("edi:0x%08x\n",cpu.edi);
-  printf("pc: 0x%08x\n\n",cpu.pc);
+  printf("pc: 0x%08x\n",cpu.pc);
   printf("------------------show all registers---------------\n");
 }
 
