@@ -57,5 +57,19 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
+
+  *success = true;
+
+  if(strcmp("eax",s) == 0) return 0;
+  else if(strcmp("ecx",s) == 0) return 1;
+  else if(strcmp("edx",s) == 0) return 2;
+  else if(strcmp("ebx",s) == 0) return 3;
+  else if(strcmp("esp",s) == 0 ) return 4;
+  else if(strcmp("ebp",s) == 0) return 5;
+  else if(strcmp("esi",s) == 0) return 6;
+  else if(strcmp("edi",s) == 0) return 7;
+  else if(strcmp("pc",s) == 0) return 8;
+  else *success = false;
+
   return 0;
 }

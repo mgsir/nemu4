@@ -9,7 +9,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_NUM
+  TK_NOTYPE = 256, TK_EQ, TK_NUM, TK_DEREF
 
   /* TODO: Add more token types */
 
@@ -244,6 +244,13 @@ uint32_t eval(uint32_t p,  uint32_t q)
   return 0;
 }
 
+
+bool type_compare(int pre_type)
+{
+    if(pre_type == TK_NUM) return false;
+    else return true;
+}
+
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -252,6 +259,16 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
+
+  for(uint32_t i = 0; i < nr_token; ++i)
+  {
+    if(tokens[i].type == '*' && (i == 0 || type_compare(tokens[i].type)))
+    {
+        tokens[i].type = TK_DEREF;
+    }
+  }
+
+
    return eval(0,nr_token-1);
 
 }
