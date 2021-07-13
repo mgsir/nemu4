@@ -70,6 +70,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {
   else if(strcmp("edi",s) == 0) return cpu.edi;
   else if(strcmp("pc",s) == 0) return cpu.pc;
   else *success = false;
+  printf("%s\n",s);
 
   return 0;
 }
