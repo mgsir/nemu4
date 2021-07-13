@@ -153,7 +153,8 @@ static int cmd_p(char *args)
 
 static int cmd_w(char *args)
 {
-    init_wp_pool();
+    if(wp == NULL)init_wp_pool();
+
     WP * temp_wp = wp;
     ++wp_size;
     bool scuccess = 0;
@@ -164,9 +165,7 @@ static int cmd_w(char *args)
         strcpy(wp->exp,args);
         wp->info = expr(args,&scuccess);
     }else{
-        temp_wp->next = wp->next;
-        temp_wp->next->info = -1;
-        if(wp->next == NULL) printf("22");
+        
 
         while(temp_wp->next != NULL) 
         { 
