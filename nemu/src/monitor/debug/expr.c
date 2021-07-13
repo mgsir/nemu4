@@ -383,7 +383,7 @@ word_t expr(char *e, bool *success) {
   }
 
   /* deal with '&' case */
-    _dealwith_sepcial_sign(TK_$);
+    //_dealwith_sepcial_sign(TK_$);
 
 
 
