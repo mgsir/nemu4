@@ -84,12 +84,12 @@ void cpu_exec(uint64_t n) {
   for (; n > 0; n --) {
     vaddr_t this_pc = cpu.pc;
 
-   for(uint32_t i = 1; i <= wp_size; ++i)
+    for(uint32_t i = 1; i <= wp_size; ++i)
     {
         bool  scuccess = 0;
         uint32_t new_val = expr(wp->exp,&scuccess);
         if(scuccess == 0){
-            printf("expr(wp->exp,&scuccess),4)failed\n");
+            printf("expr(wp->exp,&scuccess)failed\n");
         }
 
         if(wp->info != new_val)
@@ -100,7 +100,6 @@ void cpu_exec(uint64_t n) {
           nemu_state.state = NEMU_STOP;
         }
     }
- 
 
     /* Execute one instruction, including instruction fetch,
      * instruction decode, and the actual execution. */
@@ -115,6 +114,7 @@ void cpu_exec(uint64_t n) {
     asm_print(this_pc, seq_pc - this_pc, n < MAX_INSTR_TO_PRINT);
 
     /* TODO: check watchpoints here. */
+
 
 
 #endif
