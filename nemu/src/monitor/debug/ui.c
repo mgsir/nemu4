@@ -8,6 +8,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+
 void cpu_exec(uint64_t);
 int is_batch_mode();
 
@@ -152,12 +153,26 @@ static int cmd_p(char *args)
 
 static int cmd_w(char *args)
 {
-
-        return 0;
+    init_wp_pool();
+    if(wp == NULL) wp = new_wp();
+    while(wp->next) wp = wp->next;
+    wp->next = new_wp();
+    ++wp_size;
+    return 0;
 }
 
 static int cmd_d(char *args)
 {
+    uint32_t id = (uint32_t)strtoul(args,NULL,10);
+    if(id <= 0) return 0;
+
+    WP * temp_wd = wp;
+    while(id--){
+        temp_wd = temp_wd->next;
+    }
+
+    free_wp(temp_wd,wp);
+    --wp_size;
     return 0;
 }
 

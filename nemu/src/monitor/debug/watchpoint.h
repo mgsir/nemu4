@@ -11,6 +11,10 @@ typedef struct watchpoint {
   /* TODO: Add more members if necessary */
 
 } WP;
+void init_wp_pool();
+WP *  new_wp();
+void free_wp(WP *,WP *);
 
-
+WP *wp;
+uint32_t wp_size;
 #endif

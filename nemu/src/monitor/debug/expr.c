@@ -9,8 +9,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ, TK_NUM, TK_DEREF
-
+  TK_NOTYPE = 256, TK_EQ, TK_NUM, TK_DEREF, TK_0X,TK_$, TK_LEQ, TK_NEQ,TK_AND
   /* TODO: Add more token types */
 
 };
@@ -26,13 +25,18 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
-  {"\\-", '-'},         
-  {"\\*",'*'},
+  {"\\-", '-'},
   {"\\/",'/'},
   {"\\(",'('},
   {"\\)",')'},
   {"==", TK_EQ},        // equal
   {"[0-9]*",TK_NUM},    // number
+  {"0x",TK_0X},
+  {"$",TK_$},
+  {"<=",TK_LEQ}, // less and euqal
+  {"!=",TK_NEQ}, // not equal
+  {"&&",TK_AND},
+
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -94,10 +98,27 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type)
         {
+
         case TK_NOTYPE:
           temp.type = TK_NOTYPE;
           assert(substr_len <= TOK_STR_LEN);
           strncpy(temp.str, e + position - substr_len, substr_len);
+          break;
+        case TK_0X:
+          temp.type = TK_0X;
+          strcpy(temp.str,"0x");
+          break;
+        case TK_$:
+          temp.type = TK_$;
+          strcpy(temp.str,"$");
+          break;
+        case TK_NEQ:
+          temp.type = TK_NEQ;
+          strcpy(temp.str,"!=");
+          break;
+        case TK_AND:
+          temp.type = TK_AND;
+          strcpy(temp.str,"&&");
           break;
         case TK_EQ:
           temp.type = TK_EQ;
@@ -241,6 +262,10 @@ uint32_t eval(uint32_t p,  uint32_t q)
       case '/':
         assert(eval(pos+1,q) != 0);
         return eval(p,pos-1) / eval(pos+1,q);
+      case TK_NEQ:
+        return eval(p,pos-1) != eval(pos+1,q);
+      case TK_AND:
+        return eval(p,pos-1) && eval(pos+1,q);
       default: assert(0);
     }
 
@@ -254,6 +279,32 @@ bool type_compare(int pre_type)
     if(pre_type == TK_NUM) return false;
     else return true;
 }
+
+void _ui32tostr(uint32_t num, char *buf, int base)
+{
+
+    char temp[30];
+    memset(temp,0,sizeof(temp));
+    int cnt = 0;
+    if(num == 0)
+    {
+        buf[0] = '0';
+      return;
+    }
+
+    while(num)
+     {
+         temp[cnt++] = (num%base) + '0';
+         num /= base;
+     }
+
+    for(int i = 0; i < cnt; ++i)
+    {
+        buf[i] = temp[cnt-i-1];
+    }
+    return ;
+}
+
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -271,11 +322,32 @@ word_t expr(char *e, bool *success) {
         tokens[i].type = TK_DEREF;
     }
   }
+  
+  for(uint32_t i = 0; i < nr_token;++i)
+  {
+    if(tokens[i].type == TK_0X)
+    {
+        if(tokens[i+1].type == TK_NUM)
+        {
+            uint32_t decimal_number = (uint32_t)strtol(tokens[i+1].str,NULL,16);
+            memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
+            _ui32tostr(decimal_number,tokens[i+1].str,10);
+        }
+        for(int j = i; j < nr_token - 1; ++j)
+        {
+            tokens[j]  = tokens[j+1];
+        }
+        --nr_token;
+    }
+  }
+
+  //if(tokens[0].type== TK_NOTYPE)
 
 
-   return eval(0,nr_token-1);
-   
+  //if(tokens[0].type )
 
+
+  return eval(0,nr_token-1);
 }
 
 
