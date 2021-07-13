@@ -98,7 +98,11 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type)
         {
-
+      case TK_NUM:
+          temp.type = TK_NUM;
+          assert(substr_len <= TOK_STR_LEN);
+          strncpy(temp.str, e + position - substr_len, substr_len);
+          break;
         case TK_NOTYPE:
           temp.type = TK_NOTYPE;
           assert(substr_len <= TOK_STR_LEN);
@@ -148,10 +152,7 @@ static bool make_token(char *e) {
           temp.type = ')';
           strcpy(temp.str, ")");
           break;
-        case TK_NUM:
-          temp.type = TK_NUM;
-          assert(substr_len <= TOK_STR_LEN);
-          strncpy(temp.str, e + position - substr_len, substr_len);
+  
         }
 
         tokens[nr_token] = temp;
