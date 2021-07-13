@@ -31,7 +31,7 @@ static char* rl_gets() {
 }
 
 static int cmd_c(char *args) {
- // printf("NULL\n");
+ //if(args == NULL) printf("NULL\n");
   cpu_exec(-1);
   return 0;
 }
@@ -162,14 +162,12 @@ static int cmd_w(char *args)
         wp = new_wp();
         strcpy(wp->exp,args);
         wp->info = expr(args,&scuccess);
-        printf("0x%08x",wp->info);
     }
     else{
         while(temp_wp->next) temp_wp = temp_wp->next;
         temp_wp->next = new_wp();
-        strcpy(wp->next->exp,args);
+        strcpy(temp_wp->next->exp,args);
        temp_wp->next->info  = expr(args,&scuccess);
-        printf("0x%08x",temp_wp->next->info);
     }
 
     if(scuccess == 0){printf("expr(%s)failed\n", args);}
