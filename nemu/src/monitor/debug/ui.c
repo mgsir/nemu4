@@ -160,7 +160,7 @@ static int cmd_w(char *args)
 
     if(wp == NULL) {
         wp = new_wp();
-        wp->next = NULL;
+        wp->next = 0;
         strcpy(wp->exp,args);
         wp->info = expr(args,&scuccess);
     }else{
