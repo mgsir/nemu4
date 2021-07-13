@@ -355,7 +355,6 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
 
-  /*
   for(uint32_t i = 0; i < nr_token; ++i)
   {
     if(tokens[i].type == '*' && (i == 0 || type_compare(tokens[i-1].type)))
@@ -363,7 +362,6 @@ word_t expr(char *e, bool *success) {
         tokens[i].type = TK_DEREF;
     }
   }
-  */
 
   for(uint32_t i = 0; i < nr_token;++i) 
   {
@@ -375,13 +373,12 @@ word_t expr(char *e, bool *success) {
             memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
             _ui32tostr(decimal_number,tokens[i+1].str,10);
         }
-        for(int j = i; j < nr_token - 1; ++j)
-        {
-            tokens[j]  = tokens[j+1];
-        }
+
+        for(int j = i; j < nr_token - 1; ++j) {tokens[j]  = tokens[j+1];}
         --nr_token;
     }
   }
+  printf("123");
 
   //_dealwith_sepcial_sign(TK_0X);
   /* deal with '&' case */
