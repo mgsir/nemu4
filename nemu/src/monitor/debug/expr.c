@@ -258,8 +258,8 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-//*success = true;
-/*
+*success = true;
+
   for(uint32_t i = 0; i < nr_token; ++i)
   {
     if(tokens[i].type == '*' && (i == 0 || type_compare(tokens[i].type)))
@@ -267,7 +267,6 @@ word_t expr(char *e, bool *success) {
         tokens[i].type = TK_DEREF;
     }
   }
-  */
 
 
    //return eval(0,nr_token-1);

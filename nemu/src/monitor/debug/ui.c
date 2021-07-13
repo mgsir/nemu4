@@ -139,8 +139,8 @@ static int cmd_x(char *args)
 
 static int cmd_p(char *args)
 {
-    bool *success = false;
-    word_t result =  expr(args,success);
+    bool success = false;
+    word_t result =  expr(args,&success);
     if(success){
         printf("%u",result);
     }else{
