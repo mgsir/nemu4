@@ -266,7 +266,7 @@ word_t expr(char *e, bool *success) {
 
   for(uint32_t i = 0; i < nr_token; ++i)
   {
-    if(tokens[i].type == '*' && (i == 0 || type_compare(tokens[i].type)))
+    if(tokens[i].type == '*' && (i == 0 || type_compare(tokens[i-1].type)))
     {
         tokens[i].type = TK_DEREF;
     }
