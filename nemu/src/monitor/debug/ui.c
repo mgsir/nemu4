@@ -162,17 +162,16 @@ static int cmd_w(char *args)
         wp = new_wp();
         wp->exp = args;
         wp->info = expr(args,&scuccess);
-        printf("0x%08x",wp->info);
     }
     else{
         while(temp_wp->next) temp_wp = temp_wp->next;
         temp_wp->next = new_wp();
         temp_wp->next->exp = args;
        temp_wp->next->info  = expr(args,&scuccess);
-        printf("0x%08x",temp_wp->next->info);
     }
 
     if(scuccess == 0){printf("expr(%s)failed\n", args);}
+    ++wp_size;
     return 0;
 }
 

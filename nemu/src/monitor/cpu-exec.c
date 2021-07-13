@@ -98,7 +98,6 @@ void cpu_exec(uint64_t n) {
 
           nemu_state.state = NEMU_STOP;
         }
-        printf("size:%d\n",wp_size);
         wp = wp->next;
     }
 
