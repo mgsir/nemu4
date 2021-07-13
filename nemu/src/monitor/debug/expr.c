@@ -355,6 +355,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
 
+  /*
   for(uint32_t i = 0; i < nr_token; ++i)
   {
     if(tokens[i].type == '*' && (i == 0 || type_compare(tokens[i-1].type)))
@@ -381,6 +382,7 @@ word_t expr(char *e, bool *success) {
     }
   }
 
+  */
   //_dealwith_sepcial_sign(TK_0X);
   /* deal with '&' case */
   //_dealwith_sepcial_sign(TK_$);
