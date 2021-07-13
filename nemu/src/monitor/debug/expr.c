@@ -363,6 +363,7 @@ word_t expr(char *e, bool *success) {
     }
   }
 
+  /*
   for(uint32_t i = 0; i < nr_token;++i) 
   {
     if(tokens[i].type == TK_0X)
@@ -380,6 +381,7 @@ word_t expr(char *e, bool *success) {
         --nr_token;
     }
   }
+  */
     _dealwith_sepcial_sign(TK_0X);
   /* deal with '&' case */
  //  _dealwith_sepcial_sign(TK_$);
