@@ -321,12 +321,10 @@ void _dealwith_sepcial_sign(int type)
   {
     if(tokens[i].type == TK_0X && type == TK_0X)
     {
-        if(tokens[i+1].type == TK_NUM)
-        {
-            uint32_t decimal_number = (uint32_t)strtol(tokens[i+1].str,NULL,16);
-            memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
-            _ui32tostr(decimal_number,tokens[i+1].str,10);
-        }
+        assert(tokens[i+1].type == TK_NUM);
+        uint32_t decimal_number = (uint32_t)strtol(tokens[i+1].str,NULL,16);
+        memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
+        _ui32tostr(decimal_number,tokens[i+1].str,10);
         for(int j = i; j < nr_token - 1; ++j)
         {
             tokens[j]  = tokens[j+1];
