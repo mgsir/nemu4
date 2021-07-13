@@ -31,7 +31,7 @@ static struct rule {
   {"\\)",')'},
   {"==", TK_EQ},        // equal
   {"[0-9]*",TK_NUM},    // number
-  {"0[x]",TK_0X},
+  {"[0][x]",TK_0X},
   {"$",TK_$},
   {"<=",TK_LEQ}, // less and euqal
   {"!=",TK_NEQ}, // not equal
