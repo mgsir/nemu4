@@ -36,7 +36,7 @@ static struct rule {
   {"<=",TK_LEQ}, // less and euqal
   {"!=",TK_NEQ}, // not equal
   {"&&",TK_AND},
-  {"[0-9a-fA-F]*",TK_NUM},    // number
+  {"[0-9a-fA-F]\\*",TK_NUM},    // number
 
 
 };
@@ -149,7 +149,6 @@ static bool make_token(char *e) {
           temp.type = ')';
           strcpy(temp.str, ")");
           break;
-  
       case TK_NUM:
           temp.type = TK_NUM;
           assert(substr_len <= TOK_STR_LEN);
@@ -382,6 +381,7 @@ word_t expr(char *e, bool *success) {
     }
   }
 */
+
  //   _dealwith_sepcial_sign(TK_0X);
   /* deal with '&' case */
 //   _dealwith_sepcial_sign(TK_$);
