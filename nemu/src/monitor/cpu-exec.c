@@ -102,6 +102,9 @@ void cpu_exec(uint64_t n) {
           nemu_state.state = NEMU_STOP;
         }
        temp_wp = temp_wp->next;
+       if(temp_wp == NULL){
+           printf("321");
+       }
     }
 
     /* Execute one instruction, including instruction fetch,
