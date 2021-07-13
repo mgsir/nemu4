@@ -84,9 +84,9 @@ void cpu_exec(uint64_t n) {
     vaddr_t this_pc = cpu.pc;
     
     WP *temp_wp = wp;
+
    for(uint32_t i = 1; i <= wp_size; ++i)
     {
-        printf("%d\n",wp_size);
         bool  scuccess = 0;
         uint32_t new_val = expr(temp_wp->exp,&scuccess);
         if(scuccess == 0){
