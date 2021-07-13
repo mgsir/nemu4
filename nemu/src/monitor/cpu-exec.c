@@ -78,7 +78,6 @@ void cpu_exec(uint64_t n) {
 
   uint64_t timer_start = get_time();
 
-  
     /*'n' means pow(2,64) for unsigned number which a huge number(approximate infinite),
      so the below loop means machine constantly execute instructions until it perform to end.*/
   for (; n > 0; n --) {
@@ -99,9 +98,9 @@ void cpu_exec(uint64_t n) {
 
           nemu_state.state = NEMU_STOP;
         }
+        printf("size:%d\n",wp_size);
         wp = wp->next;
     }
- 
 
     /* Execute one instruction, including instruction fetch,
      * instruction decode, and the actual execution. */
