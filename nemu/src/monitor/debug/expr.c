@@ -349,6 +349,12 @@ void _dealwith_sepcial_sign(int type)
             tokens[j]  = tokens[j+1];
         }
         --nr_token;
+    }else if(tokens[i].type == TK_NOTYPE && type == TK_NOTYPE){
+        for(int j = i; j < nr_token - 1; ++j)
+        {
+            tokens[j]  = tokens[j+1];
+        }
+        --nr_token;
     }
 
   }
