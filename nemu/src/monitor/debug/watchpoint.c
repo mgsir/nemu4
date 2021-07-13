@@ -17,6 +17,7 @@ void init_wp_pool() {
 
     head = NULL;
     free_ = wp_pool;
+    /*
     WP *temp_free = free_;
 
     for(i = 1; i < NR_WP; ++i){
@@ -24,6 +25,7 @@ void init_wp_pool() {
         temp_free = free_->next;
     }
     temp_free = NULL;
+    */
 }
 
 /* TODO: Implement the functionality of watchpoint */
