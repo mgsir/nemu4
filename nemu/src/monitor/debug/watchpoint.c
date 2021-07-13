@@ -26,6 +26,7 @@ void init_wp_pool() {
     }
     temp_free = NULL;
     */
+
 }
 
 /* TODO: Implement the functionality of watchpoint */
@@ -64,7 +65,7 @@ WP* new_wp()
     assert(free_ != NULL);
 
     WP *removedFree_ = free_;
-    removedFree_->next = NULL;
+    (*removedFree_).next = NULL;
 
     free_ = free_->next;
     return removedFree_;

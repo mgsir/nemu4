@@ -160,8 +160,7 @@ static int cmd_w(char *args)
 
     if(wp == NULL) {
         wp = new_wp();
-        wp->next = NULL;
-        if(wp->next == NULL) printf("123");
+        (*wp).next = NULL;
         strcpy(wp->exp,args);
         wp->info = expr(args,&scuccess);
     }
