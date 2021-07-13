@@ -44,6 +44,10 @@ static int cmd_help(char *args);
 static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_x(char *args);
+static int cmd_p(char *args);
+static int cmd_w(char *args);
+static int cmd_d(char *args);
+
 
 static struct {
   char *name;
@@ -56,7 +60,9 @@ static struct {
   {"si","Let the process suspended after N instructions are executed in one step",cmd_si},
   {"info","Print information of registers or watchpoint",cmd_info},
   {"x","Scan memory",cmd_x},
-
+  {"p","Support mathmatic expression",cmd_p},
+  {"w","Add a watchpoint",cmd_w},
+  {"d","Delete signed watchpoint",cmd_d}
   /* TODO: Add more commands */
 
 };
@@ -130,6 +136,31 @@ static int cmd_x(char *args)
 
   return 0;
 }
+
+static int cmd_p(char *args)
+{
+    bool *success = false;
+    word_t result =  expr(args,success);
+    if(success){
+        printf("%u",result);
+    }else{
+        printf("failure\n");
+    }
+
+    return 0;
+}
+
+static int cmd_w(char *args)
+{
+
+        return 0;
+}
+
+static int cmd_d(char *args)
+{
+    return 0;
+}
+
 
 void ui_mainloop() {
   if (is_batch_mode()) {
