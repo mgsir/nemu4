@@ -31,7 +31,7 @@ static char* rl_gets() {
 }
 
 static int cmd_c(char *args) {
-  printf("NULL\n");
+ // printf("NULL\n");
   cpu_exec(-1);
   return 0;
 }
