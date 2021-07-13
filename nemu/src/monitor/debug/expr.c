@@ -382,7 +382,7 @@ word_t expr(char *e, bool *success) {
     }
   }
   */
-   // _dealwith_sepcial_sign(TK_0X);
+    _dealwith_sepcial_sign(TK_0X);
   /* deal with '&' case */
  //  _dealwith_sepcial_sign(TK_$);
 
