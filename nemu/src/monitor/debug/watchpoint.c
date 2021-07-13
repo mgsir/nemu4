@@ -17,6 +17,13 @@ void init_wp_pool() {
 
     head = NULL;
     free_ = wp_pool;
+    WP *temp_free = free_;
+
+    for(i = 1; i < NR_WP; ++i){
+        temp_free->next = &wp_pool[i];
+        temp_free = free_->next;
+    }
+    temp_free = NULL;
 }
 
 /* TODO: Implement the functionality of watchpoint */
@@ -25,7 +32,6 @@ void free_wp(WP *wp, WP *head)
     /* delete wp from head */
     if(wp == head){
         head = head->next;
-
     }else{
         WP * tempHead = head;
         while(tempHead->next != wp){tempHead = tempHead->next;}
@@ -49,8 +55,6 @@ void free_wp(WP *wp, WP *head)
         }
         tempFree = tempFree->next;
     }
-
-
 }
 
 WP* new_wp()
