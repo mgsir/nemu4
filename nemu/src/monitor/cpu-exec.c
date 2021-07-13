@@ -84,6 +84,22 @@ void cpu_exec(uint64_t n) {
   for (; n > 0; n --) {
     vaddr_t this_pc = cpu.pc;
 
+   for(uint32_t i = 1; i <= wp_size; ++i)
+    {
+        bool  scuccess = 0;
+        uint32_t new_val = expr(wp->exp,&scuccess);
+        if(scuccess == 0){
+            printf("expr(wp->exp,&scuccess),4)failed\n");
+        }
+
+        if(wp->info != new_val)
+        {
+          printf("\noldVal:%d\nnewVal:%d\n", wp->info,new_val);
+          wp->info = new_val;
+
+          nemu_state.state = NEMU_STOP;
+        }
+    }
  
 
     /* Execute one instruction, including instruction fetch,
@@ -100,22 +116,6 @@ void cpu_exec(uint64_t n) {
 
     /* TODO: check watchpoints here. */
 
-   for(uint32_t i = 1; i <= wp_size; ++i)
-    {
-        bool  scuccess = 0;
-        uint32_t new_val = expr(wp->exp,&scuccess);
-        if(scuccess == 0){
-            printf("expr(wp->exp,&scuccess)failed\n");
-        }
-
-        if(wp->info != new_val)
-        {
-          printf("\noldVal:%d\nnewVal:%d\n", wp->info,new_val);
-          wp->info = new_val;
-
-          nemu_state.state = NEMU_STOP;
-        }
-    }
 
 #endif
 
