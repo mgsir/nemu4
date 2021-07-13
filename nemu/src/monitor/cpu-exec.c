@@ -82,24 +82,25 @@ void cpu_exec(uint64_t n) {
      so the below loop means machine constantly execute instructions until it perform to end.*/
   for (; n > 0; n --) {
     vaddr_t this_pc = cpu.pc;
-
+    
+    WP *temp_wp = wp;
    for(uint32_t i = 1; i <= wp_size; ++i)
     {
         printf("%d\n",wp_size);
         bool  scuccess = 0;
-        uint32_t new_val = expr(wp->exp,&scuccess);
+        uint32_t new_val = expr(temp_wp->exp,&scuccess);
         if(scuccess == 0){
-            printf("expr(wp->exp,&scuccess),4)failed\n");
+            printf("expr(temp_wp->exp,&scuccess),4)failed\n");
         }
 
-        if(wp->info != new_val)
+        if(temp_wp->info != new_val)
         {
-          printf("\noldVal:%d\nnewVal:%d\n", wp->info,new_val);
-          wp->info = new_val;
+          printf("\noldVal:%d\nnewVal:%d\n",temp_wp->info,new_val);
+          temp_wp->info = new_val;
 
           nemu_state.state = NEMU_STOP;
         }
-        wp = wp->next;
+       temp_wp = temp_wp->next;
     }
 
     /* Execute one instruction, including instruction fetch,
