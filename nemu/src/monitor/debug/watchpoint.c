@@ -57,16 +57,6 @@ WP* new_wp()
 {
     assert(free_ != NULL);
 
-    /*
-    WP * tempHead = head;
-    if(head == NULL) {
-        head = free_;    
-    }
-    else{
-        while(tempHead->next) {tempHead = tempHead->next;}
-        tempHead->next = free_;
-    }
-    */
     WP *removedFree_ = free_;
     removedFree_->next = NULL;
 

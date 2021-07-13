@@ -154,17 +154,22 @@ static int cmd_p(char *args)
 static int cmd_w(char *args)
 {
     init_wp_pool();
-    WP * temp_wd = wp;
-
-    if(temp_wd == NULL) temp_wd = new_wp();
-    while(temp_wd->next) temp_wd = temp_wd->next;
-
-    temp_wd->next = new_wp();
-    temp_wd->exp = args;
+    WP * temp_wp = wp;
     ++wp_size;
     bool scuccess = 0;
 
-    wp->info = expr(args,&scuccess);
+    if(temp_wp == NULL) {
+        temp_wp = new_wp();
+        temp_wp->exp = args;
+        temp_wp->info = expr(args,&scuccess);
+    }
+    else{
+        while(temp_wp->next) temp_wp = temp_wp->next;
+        temp_wp->next = new_wp();
+        temp_wp->next->exp = args;
+       temp_wp->next->info  = expr(args,&scuccess);
+    }
+
     if(scuccess == 0){printf("expr(%s)failed\n", args);}
     return 0;
 }
@@ -174,12 +179,12 @@ static int cmd_d(char *args)
     uint32_t id = (uint32_t)strtoul(args,NULL,10);
     if(id <= 0) return 0;
 
-    WP * temp_wd = wp;
+    WP * temp_wp = wp;
     while(id--){
-        temp_wd = temp_wd->next;
+        temp_wp = temp_wp->next;
     }
 
-    free_wp(temp_wd,wp);
+    free_wp(temp_wp,wp);
     --wp_size;
     return 0;
 }

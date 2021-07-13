@@ -103,9 +103,9 @@ void cpu_exec(uint64_t n) {
    for(uint32_t i = 1; i <= wp_size; ++i)
     {
         bool  scuccess = 0;
-        uint32_t new_val = vaddr_read(expr(wp->exp,&scuccess),4);
+        uint32_t new_val = expr(wp->exp,&scuccess);
         if(scuccess == 0){
-            printf("vaddr_read(expr(wp->exp,&scuccess),4)failed\n");
+            printf("expr(wp->exp,&scuccess)failed\n");
         }
 
         if(wp->info != new_val)
