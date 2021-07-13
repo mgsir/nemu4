@@ -162,6 +162,7 @@ static int cmd_w(char *args)
         wp = new_wp();
         wp->exp = args;
         wp->info = expr(args,&scuccess);
+        printf("0x%08x",wp->info);
     }
     else{
         while(temp_wp->next) temp_wp = temp_wp->next;
