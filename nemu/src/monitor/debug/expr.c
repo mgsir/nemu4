@@ -35,7 +35,7 @@ static struct rule {
   {"<=",TK_LEQ}, // less and euqal
   {"!=",TK_NEQ}, // not equal
   {"&&",TK_AND},
-  {"[0-9]*",TK_NUM},    // number
+  {"[0-9a-fA-F]*",TK_NUM},    // number
 
 };
 
