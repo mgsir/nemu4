@@ -166,8 +166,9 @@ static int cmd_w(char *args)
     }else{
         temp_wp->next = wp->next;
         temp_wp->next->info = -1;
+        if(wp->next == NULL) printf("22");
 
-        while((*temp_wp).next != NULL) 
+        while(temp_wp->next != NULL) 
         { 
             printf("123\n");
             temp_wp = temp_wp->next;
