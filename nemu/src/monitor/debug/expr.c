@@ -31,7 +31,7 @@ static struct rule {
   {"\\)",')'},
   {"==", TK_EQ},        // equal
   {"[0-9]*",TK_NUM},    // number
-  {"[0][x]",TK_0X},
+  {"0[xX]",TK_0X},
   {"$",TK_$},
   {"<=",TK_LEQ}, // less and euqal
   {"!=",TK_NEQ}, // not equal
@@ -98,11 +98,6 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type)
         {
-      case TK_NUM:
-          temp.type = TK_NUM;
-          assert(substr_len <= TOK_STR_LEN);
-          strncpy(temp.str, e + position - substr_len, substr_len);
-          break;
         case TK_NOTYPE:
           temp.type = TK_NOTYPE;
           assert(substr_len <= TOK_STR_LEN);
@@ -153,6 +148,11 @@ static bool make_token(char *e) {
           strcpy(temp.str, ")");
           break;
   
+      case TK_NUM:
+          temp.type = TK_NUM;
+          assert(substr_len <= TOK_STR_LEN);
+          strncpy(temp.str, e + position - substr_len, substr_len);
+          break;
         }
 
         tokens[nr_token] = temp;
