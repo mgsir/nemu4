@@ -143,7 +143,7 @@ static int cmd_p(char *args)
     bool success = false;
     word_t result =  expr(args,&success);
     if(success){
-        printf("%u\n",result);
+        printf("0x%08x\n",result);
     }else{
         printf("failure\n");
     }
@@ -154,10 +154,18 @@ static int cmd_p(char *args)
 static int cmd_w(char *args)
 {
     init_wp_pool();
-    if(wp == NULL) wp = new_wp();
-    while(wp->next) wp = wp->next;
-    wp->next = new_wp();
+    WP * temp_wd = wp;
+
+    if(temp_wd == NULL) temp_wd = new_wp();
+    while(temp_wd->next) temp_wd = temp_wd->next;
+
+    temp_wd->next = new_wp();
+    temp_wd->exp = args;
     ++wp_size;
+    bool scuccess = 0;
+
+    wp->info = expr(args,&scuccess);
+    if(scuccess == 0){printf("expr(%s)failed\n", args);}
     return 0;
 }
 
