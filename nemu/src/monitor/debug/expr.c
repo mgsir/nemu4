@@ -258,7 +258,7 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-*success = true;
+//*success = true;
 /*
   for(uint32_t i = 0; i < nr_token; ++i)
   {
