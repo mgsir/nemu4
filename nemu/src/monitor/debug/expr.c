@@ -383,7 +383,7 @@ word_t expr(char *e, bool *success) {
   */
   _dealwith_sepcial_sign(TK_0X);
   /* deal with '&' case */
-  //_dealwith_sepcial_sign(TK_$);
+  _dealwith_sepcial_sign(TK_$);
 
   return eval(0,nr_token-1);
 }
