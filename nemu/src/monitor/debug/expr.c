@@ -183,14 +183,14 @@ uint32_t find_main_operator(uint32_t p, uint32_t q)
         {
           mainop = tokens[i].type;
           mainop_pos = i;
-         printf("--%c--",mainop);
+      //   printf("--%c--",mainop);
           // return i;
         }
         else if((tokens[i].type == '*' || tokens[i].type == '/') && mainop == ' ')
         {
           mainop = tokens[i].type;
           mainop_pos = i;
-          printf("--%c--",mainop);
+     //     printf("--%c--",mainop);
         }
       }
     }else{
@@ -223,7 +223,8 @@ uint32_t eval(uint32_t p,  uint32_t q)
     uint32_t pos = find_main_operator(p,q);
    // printf("sign: %c num:%d\n",tokens[pos].type,pos);
     //printf("p:%u,q:%u\n",p,q);
-    /*for(int i = p; i <= q; ++i)
+    /*
+    for(int i = p; i <= q; ++i)
     {
       printf("%s",tokens[i].str);
     }
