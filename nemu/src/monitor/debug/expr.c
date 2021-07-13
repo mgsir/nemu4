@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <memory/vaddr.h>
 
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
@@ -274,6 +275,8 @@ uint32_t eval(uint32_t p,  uint32_t q)
         return eval(p,pos-1) != eval(pos+1,q);
       case TK_AND:
         return eval(p,pos-1) && eval(pos+1,q);
+      case TK_DEREF:
+        return vaddr_read(eval(pos+1,q),4);
       default: assert(0);
     }
 
@@ -296,7 +299,7 @@ void _ui32tostr(uint32_t num, char *buf, int base)
     int cnt = 0;
     if(num == 0)
     {
-        buf[0] = '0';
+      buf[0] = '0';
       return;
     }
 
@@ -332,7 +335,7 @@ void _dealwith_sepcial_sign(int type)
         --nr_token;
     }
     else if(tokens[i].type == TK_$ && type == TK_$)
-    {  
+    {
         assert(tokens[i+1].type == TK_REG);
 
         bool scuccess = false;
@@ -368,24 +371,7 @@ word_t expr(char *e, bool *success) {
     }
   }
 
-  //printf("123");
-  /*
-  for(uint32_t i = 0; i < nr_token;++i) 
-  {
-    if(tokens[i].type == TK_0X)
-    {
-        if(tokens[i+1].type == TK_NUM)
-        {
-            uint32_t decimal_number = (uint32_t)strtol(tokens[i+1].str,NULL,16);
-            memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
-            _ui32tostr(decimal_number,tokens[i+1].str,10);
-        }
-
-        for(int j = i; j < nr_token - 1; ++j) {tokens[j]  = tokens[j+1];}
-        --nr_token;
-    }
-  }
-  */
+  /* deal with '0x' case */
   _dealwith_sepcial_sign(TK_0X);
   /* deal with '&' case */
   _dealwith_sepcial_sign(TK_$);
