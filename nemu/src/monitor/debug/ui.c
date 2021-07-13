@@ -153,7 +153,7 @@ static int cmd_p(char *args)
 
 static int cmd_w(char *args)
 {
-    init_wp_pool();
+    if(wp == NULL)init_wp_pool();
     WP * temp_wp = wp;
     ++wp_size;
     bool scuccess = 0;
