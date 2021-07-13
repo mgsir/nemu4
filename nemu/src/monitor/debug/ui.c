@@ -169,7 +169,6 @@ static int cmd_w(char *args)
         temp_wp->next = new_wp();
         strcpy(temp_wp->next->exp,args);
         temp_wp->next->info = expr(args,&scuccess);
-        printf("123");
     }
 
     if(scuccess == 0){printf("expr(%s)failed\n", args);}
