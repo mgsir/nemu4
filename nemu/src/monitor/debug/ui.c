@@ -165,9 +165,14 @@ static int cmd_w(char *args)
         wp->info = expr(args,&scuccess);
     }
     else{
-        while(temp_wp->next) temp_wp = temp_wp->next;
+        while(temp_wp->next) 
+        { 
+            temp_wp = temp_wp->next;
+            printf("111\n");
+        }
+
         temp_wp->next = new_wp();
-        if(temp_wp->next == NULL)printf("111\n");
+        temp_wp->next->next = NULL;
         strcpy(temp_wp->next->exp,args);
         temp_wp->next->info = expr(args,&scuccess);
     }
