@@ -158,10 +158,10 @@ static int cmd_w(char *args)
     ++wp_size;
     bool scuccess = 0;
 
-    if(temp_wp == NULL) {
-        temp_wp = new_wp();
-        temp_wp->exp = args;
-        temp_wp->info = expr(args,&scuccess);
+    if(wp == NULL) {
+        wp = new_wp();
+        wp->exp = args;
+        wp->info = expr(args,&scuccess);
     }
     else{
         while(temp_wp->next) temp_wp = temp_wp->next;
