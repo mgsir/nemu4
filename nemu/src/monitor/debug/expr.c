@@ -33,7 +33,7 @@ static struct rule {
   {"\\)",')'},
   {"==", TK_EQ},        // equal
   {"0[xX]",TK_0X},
-  {"$",TK_$},
+  {"\\$",TK_$},
   {"<=",TK_LEQ}, // less and euqal
   {"!=",TK_NEQ}, // not equal
   {"&&",TK_AND},
