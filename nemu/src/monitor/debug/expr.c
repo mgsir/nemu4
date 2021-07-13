@@ -337,8 +337,9 @@ void _dealwith_sepcial_sign(int type)
         memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
 
         bool scuccess = false;
-        uint32_t reg_val = (uint32_t)isa_reg_str2val(tokens[i].str, &scuccess);
+        uint32_t reg_val = (uint32_t) isa_reg_str2val(tokens[i].str, &scuccess);
         _ui32tostr(reg_val,tokens[i+1].str,10);
+
         for(int j = i; j < nr_token - 1; ++j)
         {
             tokens[j]  = tokens[j+1];
