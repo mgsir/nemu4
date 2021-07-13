@@ -363,7 +363,6 @@ word_t expr(char *e, bool *success) {
     }
   }
 
-  
   for(uint32_t i = 0; i < nr_token;++i) 
   {
     if(tokens[i].type == TK_0X)
