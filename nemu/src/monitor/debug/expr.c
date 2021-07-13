@@ -312,38 +312,38 @@ void _ui32tostr(uint32_t num, char *buf, int base)
 
 void _dealwith_sepcial_sign(int type)
 {
-  for(uint32_t i = 0; i < nr_token;++i) 
+ for(uint32_t i = 0; i < nr_token;++i) 
   {
     if(tokens[i].type == TK_0X && type == TK_0X)
     {
-        assert(tokens[i+1].type == TK_NUM);
-        uint32_t decimal_number = (uint32_t)strtol(tokens[i+1].str,NULL,16);
-        memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
-        _ui32tostr(decimal_number,tokens[i+1].str,10);
-
-    }else if(tokens[i].type == TK_$ && type == TK_$){
+        if(tokens[i+1].type == TK_NUM)
+        {
+            uint32_t decimal_number = (uint32_t)strtol(tokens[i+1].str,NULL,16);
+            memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
+            _ui32tostr(decimal_number,tokens[i+1].str,10);
+        }
+        for(int j = i; j < nr_token - 1; ++j)
+        {
+            tokens[j]  = tokens[j+1];
+        }
+        --nr_token;
+    }
+    else if(tokens[i+1].type == TK_REG && type == TK_REG)
+    {  
         assert(tokens[i+1].type == TK_REG);
         memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
 
         bool scuccess = false;
         uint32_t reg_val = (uint32_t)isa_reg_str2val(tokens[i].str, &scuccess);
         _ui32tostr(reg_val,tokens[i+1].str,10);
+        for(int j = i; j < nr_token - 1; ++j)
+        {
+            tokens[j]  = tokens[j+1];
+        }
+        --nr_token;
     }
-    /*else if(type == TK_DEREF && tokens[i].type == TK_DEREF){
-        assert(tokens[i+1].type == TK_NUM);
-        memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
-        uint32_t decimal_number = (uint32_t)strtol(tokens[i+1].str,NULL,10);
-        uint32_t data =  vaddr_read(,4);
-    }
-    */
 
-    for(int j = i; j < nr_token - 1; ++j)
-    {
-        tokens[j]  = tokens[j+1];
-    }
-    --nr_token;
   }
-
 }
 
 word_t expr(char *e, bool *success) {
