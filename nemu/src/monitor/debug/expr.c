@@ -233,13 +233,11 @@ uint32_t eval(uint32_t p,  uint32_t q)
   else if(p == q) return (uint32_t)strtol(tokens[p].str,NULL,10);
   else if(check_parentheses(p,q) == true) 
   {
-      /*
     printf("p:%u,q:%u\n",p,q);
     for (int i = p; i <= q; ++i)
     {
       printf("%s", tokens[i].str);
     }
-    */
      return eval(p + 1, q - 1);
   }
   else
