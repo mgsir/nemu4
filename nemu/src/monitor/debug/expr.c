@@ -333,7 +333,7 @@ void _dealwith_sepcial_sign(int type)
         }
         --nr_token;
     }
-    else if(tokens[i+1].type == TK_REG && type == TK_REG)
+    else if(tokens[i].type == TK_$ && type == TK_$)
     {  
         assert(tokens[i+1].type == TK_REG);
         memset(tokens[i+1].str,0,sizeof(tokens[i+1].str));
