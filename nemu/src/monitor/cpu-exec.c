@@ -83,7 +83,7 @@ void cpu_exec(uint64_t n) {
   for (; n > 0; n --) {
     vaddr_t this_pc = cpu.pc;
 
-    printf("%d\n",wp_size);
+    printf("123");
    for(uint32_t i = 1; i <= wp_size; ++i)
     {
         bool  scuccess = 0;
