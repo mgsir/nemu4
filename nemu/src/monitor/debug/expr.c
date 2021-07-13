@@ -110,6 +110,11 @@ static bool make_token(char *e) {
           temp.type = TK_0X;
           strcpy(temp.str,"0x");
           break;
+        case TK_REG:
+          temp.type = TK_REG ;
+          assert(substr_len <= TOK_STR_LEN);
+          strncpy(temp.str, e + position - substr_len, substr_len);;
+          break;
         case TK_$:
           temp.type = TK_$;
           strcpy(temp.str,"$");
