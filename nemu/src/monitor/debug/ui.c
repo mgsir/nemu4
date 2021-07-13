@@ -171,7 +171,6 @@ static int cmd_w(char *args)
     }
 
     if(scuccess == 0){printf("expr(%s)failed\n", args);}
-    ++wp_size;
     return 0;
 }
 
