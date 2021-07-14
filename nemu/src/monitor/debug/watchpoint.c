@@ -17,7 +17,7 @@ void init_wp_pool() {
     wp_pool[NR_WP - 1].next = NULL;
     head = NULL;
     free_ = &wp_pool[0];
-    printf("free_:%lld",(long long)free_);
+    printf("free_:%lld\n",(long long)free_);
 }
 
 /* TODO: Implement the functionality of watchpoint */
