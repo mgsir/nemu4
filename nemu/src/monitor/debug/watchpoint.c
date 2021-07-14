@@ -62,13 +62,13 @@ WP* new_wp()
         removed_head->next = &wp_pool[cnt];
         removed_head->next->next = NULL;
     }
-    if(free_ == wp_pool && free_->next == NULL) printf("%lld \n",(long long)free_);
+    if(cnt == 0 && free_ == wp_pool && free_->next == NULL) printf("%lld \n",(long long)free_);
 
-   // if(cnt == NR_WP) {
-    //    free_ = NULL;
-    //}else{
-     free_ = free_->next;
-    //}
+    if(cnt == NR_WP) {
+        free_ = NULL;
+    }else{
+        free_ = free_->next;
+    }
     removed_head = head;
     ++cnt;
     return removed_head;
