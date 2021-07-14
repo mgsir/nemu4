@@ -176,16 +176,13 @@ static int cmd_w(char *args)
 
 static int cmd_d(char *args)
 {
-    uint32_t id = (uint32_t)strtoul(args,NULL,10);
-
+    int id = strtoul(args,NULL,10);
     printf("%d\n",id);
-    /*
-    int id = atoi(args);
-    if(id <= 0) return 0;
 
-    free_wp(id);
+    if(id <= 0) return 0;
+    //free_wp(id);
     --wp_size;
-    */
+
     return 0;
 }
 
