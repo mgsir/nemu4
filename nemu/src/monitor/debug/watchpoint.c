@@ -22,6 +22,7 @@ void init_wp_pool() {
     for(int i = 1; i < NR_WP; ++i)
     {
         temp->next = &wp_pool[i];
+        temp = temp->next;
     }
 
 }
