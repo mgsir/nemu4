@@ -65,7 +65,12 @@ WP* new_wp()
         removed_head->next->next = NULL;
     }
 
-    //free_ = free_->next;
+    if(cnt == NR_WP) {
+        free_ = NULL;
+    }else{
+     free_ = &wp_pool[cnt+1];
+    }
+
     ++cnt;
     return removed_head;
 }
