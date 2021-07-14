@@ -64,7 +64,7 @@ WP* new_wp()
             temp->next = &wp_pool[i];
             temp = temp->next;
         }
-        if(free_->next == NULL) printf("1239");
+        printf("1239");
     }
 
     if(cnt == 0) {head = &wp_pool[0]; head->next = NULL;}
