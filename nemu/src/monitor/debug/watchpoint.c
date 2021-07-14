@@ -57,7 +57,7 @@ WP* new_wp()
     assert(free_ != NULL);
     int temp_cnt = cnt - 1;
     WP *removed_head = head;
-    if(cnt == 0)printf("%d\n",cnt);
+    printf("%d\n",cnt);
 
     if(cnt == 0) {removed_head = &wp_pool[0]; removed_head->next = NULL;}
     else{
