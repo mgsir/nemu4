@@ -32,15 +32,20 @@ void free_wp(int id)
     if(id == 1){
         head = temp_head->next;
     }else{
-        for(int i = 1; i < id -1; ++i) { temp_head = temp_head->next; }
+        for(int i = 1; i < id-1; ++i) { temp_head = temp_head->next; }
         temp_head->next = temp_head->next->next;
     }
 
-    /* add removed element to free_*/
+    /* add removed element to free_ */
+    /*
    if(temp_free->NO > removed_wp->NO){
        removed_wp->next = temp_free;
        temp_free = removed_wp;
    }
+   */
+    if(1)
+    {
+    }
    else{
        while(temp_free->next)
        {
