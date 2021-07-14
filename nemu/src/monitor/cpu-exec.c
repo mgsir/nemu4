@@ -85,27 +85,7 @@ void cpu_exec(uint64_t n) {
     
     WP *temp_wp = wp;
 
-   for(uint32_t i = 1; i <= wp_size; ++i)
-    {
-        printf("%d\n",wp_size);
-        bool  scuccess = 0;
-        uint32_t new_val = expr(temp_wp->exp,&scuccess);
-        if(scuccess == 0){
-            printf("expr(temp_wp->exp,&scuccess),4)failed\n");
-        }
 
-        if(temp_wp->info != new_val)
-        {
-          printf("\noldVal:%d\nnewVal:%d\n",temp_wp->info,new_val);
-          temp_wp->info = new_val;
-
-          nemu_state.state = NEMU_STOP;
-        }
-       temp_wp = temp_wp->next;
-       if(temp_wp == NULL){
-           printf("321");
-       }
-    }
 
     /* Execute one instruction, including instruction fetch,
      * instruction decode, and the actual execution. */
@@ -121,6 +101,26 @@ void cpu_exec(uint64_t n) {
 
     /* TODO: check watchpoints here. */
 
+   for(uint32_t i = 1; i <= wp_size; ++i)
+    {
+        bool  scuccess = 0;
+        uint32_t new_val = expr(temp_wp->exp,&scuccess);
+        if(scuccess == 0){
+            printf("expr(temp_wp->exp,&scuccess),4)failed\n");
+        }
+
+        if(temp_wp->info != new_val)
+        {
+          printf("\n id: %d \n oldVal:%d\nnewVal:%d\n",temp_wp->NO,temp_wp->info,new_val);
+          temp_wp->info = new_val;
+
+          nemu_state.state = NEMU_STOP;
+        }
+       temp_wp = temp_wp->next;
+       if(temp_wp == NULL){
+           printf("321");
+       }
+    }
 
 #endif
 
