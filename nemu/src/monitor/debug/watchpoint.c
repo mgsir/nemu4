@@ -78,6 +78,7 @@ WP* new_wp()
     }
 
 
+    if(free_->next != NULL) printf("123\n");
     if(cnt == NR_WP) {
         free_ = NULL;
     }else{
