@@ -53,20 +53,21 @@ void free_wp(WP *wp, WP *head)
 WP* new_wp()
 {
     assert(free_ != NULL);
-    //int temp_cnt = cnt - 1;
-    WP *removed_head = head;
-
-    if(cnt == 0) {head = &wp_pool[0];}
-    else{
-        while(removed_head->next){removed_head = removed_head->next;}
-        removed_head->next = &wp_pool[cnt];
-    }
-
     if(cnt == NR_WP) {
         free_ = NULL;
     }else{
         free_ = free_->next;
     }
+
+    WP *removed_head = head;
+
+    if(cnt == 0) {head = &wp_pool[0]; head->next = NULL;}
+    else{
+        while(removed_head->next){removed_head = removed_head->next;}
+        removed_head->next = &wp_pool[cnt];
+        removed_head->next->next = NULL;
+    }
+
     removed_head = head;
     ++cnt;
     return removed_head;
