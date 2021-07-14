@@ -179,12 +179,7 @@ static int cmd_d(char *args)
     uint32_t id = (uint32_t)strtoul(args,NULL,10);
     if(id <= 0) return 0;
 
-    WP * temp_wp = wp;
-    while(id--){
-        temp_wp = temp_wp->next;
-    }
-
-    free_wp(temp_wp,wp);
+    free_wp(id);
     --wp_size;
     return 0;
 }
