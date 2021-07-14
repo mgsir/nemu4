@@ -64,7 +64,6 @@ WP* new_wp()
             temp->next = &wp_pool[i];
             temp = temp->next;
         }
-        free_ = temp;
     }
 
     if(cnt == 0) {head = &wp_pool[0]; head->next = NULL;}
@@ -78,7 +77,7 @@ WP* new_wp()
     if(cnt == NR_WP) {
         free_ = NULL;
     }else{
-        free_ = &wp_pool[cnt+1];
+        free_ = free_->next;
     }
     removed_head = head;
     ++cnt;
