@@ -78,11 +78,10 @@ WP* new_wp()
 
             oldfree_->next = temp_head->next;
             temp_head->next = oldfree_;
-            printf("%d\n",cnt);
         }
     }
-
     ++cnt;
-    return head;
+    printf("%d\n",cnt);
+    return oldfree_;
 }
 
