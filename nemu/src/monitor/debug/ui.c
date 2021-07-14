@@ -115,8 +115,8 @@ static void watchpoints_display()
     printf("------------------watchpoints_display-----------------\n");
         while(temp_wp)
         {
-            printf("exp_str:%s\n",temp_wp->exp);
             printf("id:%d\n",temp_wp->NO+1);
+            printf("exp_str:%s\n",temp_wp->exp);
             temp_wp = temp_wp->next;
         }
         printf("total num:%d\n",wp_size);
