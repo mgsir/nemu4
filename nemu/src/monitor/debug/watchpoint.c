@@ -60,7 +60,6 @@ WP* new_wp()
     else{
         while(removed_head->next){removed_head = removed_head->next;}
         removed_head->next = &wp_pool[cnt];
-        removed_head->next->next = NULL;
     }
 
     if(cnt == NR_WP) {
