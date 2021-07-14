@@ -23,6 +23,7 @@ void init_wp_pool() {
     {
         free_->next = &wp_pool[i];
         free_ = free_->next;
+        printf("123\n");
     }
     free_->next = NULL;
 
