@@ -111,7 +111,7 @@ void cpu_exec(uint64_t n) {
 
         if(temp_wp->info != new_val)
         {
-          printf("\n id: %d \n oldVal:%d\nnewVal:%d\n",temp_wp->NO,temp_wp->info,new_val);
+          printf("\nid: %d \noldVal:%d\nnewVal:%d\n",temp_wp->NO,temp_wp->info,new_val);
           temp_wp->info = new_val;
 
           nemu_state.state = NEMU_STOP;
