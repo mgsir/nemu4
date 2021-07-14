@@ -169,7 +169,6 @@ static int cmd_w(char *args)
             temp_wp = temp_wp->next;
         }
 
-            printf("123\n");
         temp_wp->next = new_wp();
             printf("123\n");
         temp_wp->next->next = NULL;
