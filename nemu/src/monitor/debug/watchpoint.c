@@ -13,7 +13,7 @@ void init_wp_pool() {
         wp_pool[i].NO = i;
         wp_pool[i].next = &wp_pool[i + 1];
         wp_pool[i].info = -1;
-        printf("123\n");
+        printf("1223\n");
     }
     wp_pool[NR_WP - 1].next = NULL;
 /*
