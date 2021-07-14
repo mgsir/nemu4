@@ -81,7 +81,6 @@ WP* new_wp()
         }
     }
     ++cnt;
-    printf("%d\n",cnt);
     return oldfree_;
 }
 
