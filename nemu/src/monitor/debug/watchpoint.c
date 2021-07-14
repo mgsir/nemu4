@@ -18,6 +18,11 @@ void init_wp_pool() {
 
     head = NULL;
     free_ = wp_pool;
+    WP *temp = free_;
+    for(int i = 1; i < NR_WP; ++i)
+    {
+        temp->next = &wp_pool[i];
+    }
 
 }
 
