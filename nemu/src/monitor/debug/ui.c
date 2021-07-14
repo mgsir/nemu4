@@ -170,7 +170,6 @@ static int cmd_w(char *args)
         }
 
         temp_wp->next = new_wp();
-            printf("123\n");
         strcpy(temp_wp->next->exp,args);
         temp_wp->next->info = expr(args,&scuccess);
     }
