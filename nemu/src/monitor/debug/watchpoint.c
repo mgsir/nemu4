@@ -25,7 +25,7 @@ void init_wp_pool() {
         free_ = free_->next;
         printf("123");
     }
-    free_->next = NULL;
+   // free_->next = NULL;
 
     free_ = temp;
 }
