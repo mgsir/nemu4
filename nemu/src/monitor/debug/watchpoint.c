@@ -21,10 +21,12 @@ void init_wp_pool() {
     WP *temp = free_;
     for(int i = 1; i < NR_WP; ++i)
     {
-        temp->next = &wp_pool[i];
-        temp = temp->next;
+        free_->next = &wp_pool[i];
+        free_ = free_->next;
     }
+    free_->next = NULL;
 
+    free_ = temp;
 }
 
 /* TODO: Implement the functionality of watchpoint */
