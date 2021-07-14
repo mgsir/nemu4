@@ -71,11 +71,11 @@ WP* new_wp()
 
     //if(free_->next != NULL) printf("123\n");
     if(cnt == 0) {
-        head = &wp_pool[0]; 
+        head = free_; 
     }
     else{
         while(removed_head->next){removed_head = removed_head->next;}
-        removed_head->next = &wp_pool[cnt];
+        removed_head->next = free_;
         removed_head->next->next = NULL;
     }
 
