@@ -76,7 +76,7 @@ WP* new_wp()
     else{
         while(removed_head->next){removed_head = removed_head->next;}
         removed_head->next = free_;
-        removed_head->next->next = NULL;
+       // removed_head->next->next = NULL;
     }
 
 
