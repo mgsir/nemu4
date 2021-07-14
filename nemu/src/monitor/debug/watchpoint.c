@@ -56,7 +56,7 @@ WP* new_wp()
     //int temp_cnt = cnt - 1;
     WP *removed_head = head;
 
-    if(cnt == 0) {head = &wp_pool[0]; head->next = NULL;}
+    if(cnt == 0) {head = &wp_pool[0];}
     else{
         while(removed_head->next){removed_head = removed_head->next;}
         removed_head->next = &wp_pool[cnt];
