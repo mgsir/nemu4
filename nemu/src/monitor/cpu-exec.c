@@ -106,12 +106,12 @@ void cpu_exec(uint64_t n) {
         bool  scuccess = 0;
         uint32_t new_val = expr(temp_wp->exp,&scuccess);
         if(scuccess == 0){
-            printf("expr(temp_wp->exp,&scuccess),4)failed\n");
+            printf("expr(temp_wp->exp,&scuccess)failed\n");
         }
 
         if(temp_wp->info != new_val)
         {
-          printf("\nid: %d \noldVal:%d\nnewVal:%d\n",temp_wp->NO+1,temp_wp->info,new_val);
+          printf("\nid: %d \noldVal:0x%08x\nnewVal:0x%08x\n",temp_wp->NO+1,temp_wp->info,new_val);
           temp_wp->info = new_val;
 
           nemu_state.state = NEMU_STOP;
