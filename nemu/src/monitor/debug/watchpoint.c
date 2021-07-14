@@ -30,6 +30,7 @@ void free_wp(int id)
 
     /* delete from head */
     if(id == 1){
+        removed_wp = head;
         head = temp_head->next;
     }else{
         for(int i = 1; i < id-1; ++i) { temp_head = temp_head->next; }
@@ -39,8 +40,8 @@ void free_wp(int id)
 
     /* add removed element to free_ */
    if(temp_free->NO > removed_wp->NO){
-       //removed_wp->next = temp_free;
-       //temp_free = removed_wp;
+       removed_wp->next = temp_free;
+       temp_free = removed_wp;
    }else{
        while(temp_free->next){
            if(temp_free->next->NO > removed_wp->NO) break;

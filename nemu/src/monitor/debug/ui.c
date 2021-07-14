@@ -177,7 +177,7 @@ static int cmd_w(char *args)
 static int cmd_d(char *args)
 {
     int id = strtoul(args,NULL,10);
-    printf("%d\n",id);
+   // printf("%d\n",id);
 
     if(id <= 0) return 0;
     free_wp(id);
