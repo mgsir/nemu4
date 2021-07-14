@@ -61,17 +61,28 @@ WP* new_wp()
         free_ = free_->next;
     }
 
-    WP *removed_head = head;
+    WP *temp_head = head;
 
-    if(cnt == 0) {head = &wp_pool[0]; head->next = NULL;}
+    if(head == NULL) {head = &wp_pool[0]; head->next = NULL;}
     else{
-        while(removed_head->next){removed_head = removed_head->next;}
-        removed_head->next = oldfree_;
-        removed_head->next->next = NULL;
+        if(temp_head->NO > free_->NO){
+            oldfree_->next = temp_head;
+            head = oldfree_;
+        }else{
+
+            while(temp_head->next)
+            {
+                if(temp_head->next->NO > free_->NO)  break;
+                temp_head = temp_head->next;
+            }
+
+            oldfree_->next = temp_head->next;
+            temp_head->next = oldfree_;
+        }
+
     }
 
-    removed_head = head;
     ++cnt;
-    return removed_head;
+    return head;
 }
 
