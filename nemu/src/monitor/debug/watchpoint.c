@@ -23,6 +23,7 @@ void init_wp_pool() {
 void free_wp(int id)
 {
     assert(id <= cnt);
+    printf("123");
     
     WP * removed_wp = NULL;
     WP * temp_head = head;
