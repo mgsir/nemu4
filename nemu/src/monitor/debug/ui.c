@@ -180,7 +180,7 @@ static int cmd_d(char *args)
     printf("%d\n",id);
 
     if(id <= 0) return 0;
-    //free_wp(id);
+    free_wp(id);
     --wp_size;
 
     return 0;
