@@ -54,9 +54,6 @@ void free_wp(WP *wp, WP *head)
 
 WP* new_wp()
 {
-    
-
-
     assert(free_ != NULL);
     int temp_cnt = cnt - 1;
     WP *removed_head = head;
@@ -68,7 +65,7 @@ WP* new_wp()
         removed_head->next->next = NULL;
     }
 
-    free_ = free_->next;
+    //free_ = free_->next;
     ++cnt;
     return removed_head;
 }
