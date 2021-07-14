@@ -69,7 +69,7 @@ WP* new_wp()
         removed_head->next = &wp_pool[cnt];
         removed_head->next->next = NULL;
     }
-    if(free_ == wp_pool) printf("is 2null \n");
+    if(free_ == wp_pool && free_->next == NULL) printf("i sss 2null \n");
 
     if(cnt == NR_WP) {
         free_ = NULL;
