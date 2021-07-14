@@ -178,11 +178,13 @@ static int cmd_d(char *args)
 {
     printf("!23");
     //uint32_t id = (uint32_t)strtoul(args,NULL,10);
+    /*
     int id = atoi(args);
     if(id <= 0) return 0;
 
     free_wp(id);
     --wp_size;
+    */
     return 0;
 }
 
