@@ -39,8 +39,8 @@ void free_wp(int id)
 
     /* add removed element to free_ */
    if(temp_free->NO > removed_wp->NO){
-       removed_wp->next = temp_free;
-       temp_free = removed_wp;
+       //removed_wp->next = temp_free;
+       //temp_free = removed_wp;
    }else{
        while(temp_free->next){
            if(temp_free->next->NO > removed_wp->NO) break;
