@@ -111,15 +111,12 @@ void cpu_exec(uint64_t n) {
 
         if(temp_wp->info != new_val)
         {
-          printf("\nid: %d \noldVal:%d\nnewVal:%d\n",temp_wp->NO,temp_wp->info,new_val);
+          printf("\nid: %d \noldVal:%d\nnewVal:%d\n",temp_wp->NO+1,temp_wp->info,new_val);
           temp_wp->info = new_val;
 
           nemu_state.state = NEMU_STOP;
         }
        temp_wp = temp_wp->next;
-       if(temp_wp == NULL){
-           printf("321");
-       }
     }
 
 #endif
