@@ -9,7 +9,7 @@ static int cnt = 0;
 
 void init_wp_pool() {
     int i;
-    if(free_ != NULL) return;
+    //if(free_ != NULL) return;
     for (i = 0; i < NR_WP; i ++) {
         wp_pool[i].NO = i;
         wp_pool[i].next = &wp_pool[i + 1];
