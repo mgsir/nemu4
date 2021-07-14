@@ -109,10 +109,24 @@ static int cmd_si(char *args)
   return 0;
 }
 
+static void watchpoints_display()
+{
+    WP *temp_wp = wp;
+    printf("------------------watchpoints_display-----------------\n");
+        while(temp_wp)
+        {
+            printf("exp_str:%s\n",temp_wp->exp);
+            printf("id:%d\n",temp_wp->NO);
+        }
+        printf("total num:%d\n",wp_size);
+
+    printf("------------------watchpoints_display-----------------\n");
+}
+
 static int cmd_info(char *args)
 {
   if(strcmp(args,"r") == 0) isa_reg_display();
-  //if(args == "w") 
+  if(strcmp(args,"w") == 0) watchpoints_display(); 
   return 0;
 }
 
@@ -177,7 +191,6 @@ static int cmd_w(char *args)
 static int cmd_d(char *args)
 {
     int id = strtoul(args,NULL,10);
-   // printf("%d\n",id);
 
     if(id <= 0) return 0;
     free_wp(id);
