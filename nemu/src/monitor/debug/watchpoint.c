@@ -65,21 +65,20 @@ WP* new_wp()
 
     if(head == NULL) {head = &wp_pool[0]; head->next = NULL;}
     else{
-        if(temp_head->NO > free_->NO){
+        if(temp_head->NO > oldfree_->NO){
             oldfree_->next = temp_head;
             head = oldfree_;
         }else{
 
             while(temp_head->next)
             {
-                if(temp_head->next->NO > free_->NO)  break;
+                if(temp_head->next->NO >oldfree_->NO)  break;
                 temp_head = temp_head->next;
             }
 
             oldfree_->next = temp_head->next;
             temp_head->next = oldfree_;
         }
-
     }
 
     ++cnt;
