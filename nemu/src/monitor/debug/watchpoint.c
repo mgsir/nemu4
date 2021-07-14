@@ -28,7 +28,14 @@ void free_wp(int id)
     WP * temp_head = head;
     WP * temp_free = free_;
 
-   for(int i = 1; i < id; ++i) { temp_head = temp_head->next; }
+    if(id == 1){
+        head = temp_head->next;
+    }else{
+        for(int i = 1; i < id -1; ++i) { temp_head = temp_head->next; }
+        temp_head->next = temp_head->next->next;
+    }
+ 
+
    if(temp_free->NO > removed_wp->NO){
        removed_wp->next = temp_free;
        temp_free = removed_wp;
