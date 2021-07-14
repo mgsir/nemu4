@@ -62,12 +62,11 @@ WP* new_wp()
         removed_head->next = &wp_pool[cnt];
         removed_head->next->next = NULL;
     }
-    if(cnt == 0 && free_ == wp_pool && free_->next == NULL) printf("123\n");
 
     if(cnt == NR_WP) {
         free_ = NULL;
     }else{
-        free_ = free_->next;
+        free_ = &wp_pool[cnt+1];
     }
     removed_head = head;
     ++cnt;
