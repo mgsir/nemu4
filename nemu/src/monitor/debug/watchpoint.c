@@ -55,7 +55,6 @@ void free_wp(WP *wp, WP *head)
 WP* new_wp()
 {
     assert(free_ != NULL);
-    
     int temp_cnt = cnt - 1;
     WP *removed_head = head;
 
