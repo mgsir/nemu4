@@ -178,6 +178,7 @@ static int cmd_d(char *args)
 {
     uint32_t id = (uint32_t)strtoul(args,NULL,10);
     if(id <= 0) return 0;
+    printf("!23");
 
     free_wp(id);
     --wp_size;
