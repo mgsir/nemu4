@@ -71,7 +71,6 @@ WP* new_wp()
 
     //if(free_->next != NULL) printf("123\n");
     if(cnt == 0) {
-        if(free_->next != NULL) printf("123\n");
         head = &wp_pool[0]; 
     }
     else{
@@ -84,7 +83,6 @@ WP* new_wp()
     if(cnt == NR_WP) {
         free_ = NULL;
     }else{
-    if(free_->next != NULL) printf("123\n");
         free_ = free_->next;
     }
     removed_head = head;
