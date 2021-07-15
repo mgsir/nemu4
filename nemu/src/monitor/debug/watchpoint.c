@@ -91,6 +91,7 @@ WP* new_wp()
             temp_head->next = oldfree_;
         }
     }
+    oldfree_->NO = cnt;
 
     ++cnt;
     return oldfree_;
