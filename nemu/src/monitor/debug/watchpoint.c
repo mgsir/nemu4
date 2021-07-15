@@ -20,7 +20,7 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
-void free_wp(int id)
+void free_wp(int id,WP *wp)
 {
     assert(id <= cnt);
     
@@ -51,6 +51,14 @@ void free_wp(int id)
        temp_free->next = removed_wp;
    }
     --cnt;
+
+    wp = head;
+    temp_head = wp;
+   for(int i = 0; i < cnt; ++i)
+   {
+       temp_head->NO  = i;
+     temp_head = temp_head->next;
+   }
 }
 
 WP* new_wp()

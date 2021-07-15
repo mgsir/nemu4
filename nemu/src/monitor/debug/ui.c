@@ -194,7 +194,7 @@ static int cmd_d(char *args)
     int id = strtoul(args,NULL,10);
 
     if(id <= 0) return 0;
-    free_wp(id);
+    free_wp(id,wp);
     --wp_size;
 
     return 0;
