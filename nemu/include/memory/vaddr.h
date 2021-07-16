@@ -2,6 +2,7 @@
 #define __MEMORY_VADDR_H__
 
 #include <common.h>
+#include <memory/paddr.h>
 
 static inline word_t vaddr_read(vaddr_t addr, int len) {
   word_t vaddr_read1(vaddr_t addr);
@@ -56,6 +57,25 @@ static inline word_t vaddr_ifetch(vaddr_t addr, int len) {
     default: assert(0);
   }
 }
+/*
+ inline  word_t vaddr_ifetch1(vaddr_t addr)
+{
+  assert(isa_vaddr_check(addr,MEM_TYPE_READ,1) == MEM_RET_OK);
+  return paddr_read(addr,1);
+}
+
+inline word_t vaddr_ifetch2(vaddr_t addr)
+{
+  assert(isa_vaddr_check(addr,MEM_TYPE_READ,2) == MEM_RET_OK);
+  return paddr_read(addr,2);
+}
+
+inline word_t vaddr_ifetch4(vaddr_t addr)
+{
+  assert(isa_vaddr_check(addr,MEM_TYPE_READ,4) == MEM_RET_OK);
+  return paddr_read(addr,4);
+}
+*/
 
 
 #define PAGE_SIZE         4096
