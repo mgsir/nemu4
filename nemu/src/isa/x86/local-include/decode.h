@@ -48,7 +48,7 @@ static inline def_DopHelper(I) {
 static inline def_DopHelper(SI) {
 
   assert(op->width == 1 || op->width == 4);
-  int32_t instr =  instr_fetch(&s->seq_pc, op->width);
+  uint32_t instr =  instr_fetch(&s->seq_pc, op->width);
   operand_imm(s,op,load_val, instr,op->width);
   /* TODO: Use instr_fetch() to read `op->width' bytes of memory
    * pointed by 's->seq_pc'. Interpret the result as a signed immediate,
