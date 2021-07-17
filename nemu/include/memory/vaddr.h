@@ -48,7 +48,7 @@ static inline word_t vaddr_ifetch(vaddr_t addr, int len) {
   word_t vaddr_ifetch8(vaddr_t addr);
 #endif
   switch (len) {
-    case 1: printf("123") ;return vaddr_ifetch1(addr);
+    case 1: return vaddr_ifetch1(addr);
     case 2: return vaddr_ifetch2(addr);
     case 4: return vaddr_ifetch4(addr);
 #ifdef ISA64
