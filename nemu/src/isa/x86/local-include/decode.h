@@ -48,7 +48,7 @@ static inline def_DopHelper(I) {
 static inline def_DopHelper(SI) {
 
   assert(op->width == 1 || op->width == 4);
-  uint32_t instr =  instr_fetch(&s->seq_pc, op->width);
+  int32_t instr =  instr_fetch(&s->seq_pc, op->width);
   operand_imm(s,op,load_val, instr,op->width);
   /* TODO: Use instr_fetch() to read `op->width' bytes of memory
    * pointed by 's->seq_pc'. Interpret the result as a signed immediate,
@@ -266,7 +266,7 @@ static inline def_DHelper(a2O) {
 static inline def_DHelper(J) {
   decode_op_SI(s, id_dest, false);
   // the target address can be computed in the decode stage
-  s->jmp_pc = id_dest->simm ;
+  s->jmp_pc = id_dest->simm + s->seq_pc;
 }
 
 static inline def_DHelper(push_SI) {
