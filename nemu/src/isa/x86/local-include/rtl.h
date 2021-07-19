@@ -27,8 +27,8 @@ static inline def_rtl(sr, int r, const rtlreg_t* src1, int width) {
 static inline def_rtl(push, const rtlreg_t* src1) {
   // esp <- esp - 4
   // M[esp] <- src1
-  word_t * pesp =  &reg_l(R_ESP);
-  *pesp -= s->width; 
+  // word_t * pesp =  &reg_l(R_ESP);
+  // *pesp -= s->width; 
   // switch (s->width)
   // {
   // case 1:
@@ -39,7 +39,7 @@ static inline def_rtl(push, const rtlreg_t* src1) {
   //  vaddr_read4(*src1); break;
   // default : assert(0);
   // }
-  vaddr_write(*pesp,vaddr_read(*src1,s->width),s->width);
+  // vaddr_write(*pesp,vaddr_read(*src1,s->width),s->width);
   TODO();
   //vaddr_write(*pesp,*src1,s->width);
 }
