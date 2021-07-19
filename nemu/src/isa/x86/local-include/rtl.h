@@ -31,7 +31,7 @@ static inline def_rtl(push, const rtlreg_t* src1) {
   *pesp -= s->width; 
   vaddr_write(*pesp,vaddr_read(*src1,s->width),s->width);
   //TODO();
-  printf("%08x\n",vaddr_read(*pesp,s->width));
+  printf("0x:%08x\n",vaddr_read(*pesp,s->width));
   //vaddr_write(*pesp,*src1,s->width);
 }
 
