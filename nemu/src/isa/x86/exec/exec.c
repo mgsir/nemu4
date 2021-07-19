@@ -16,7 +16,6 @@ static inline def_EHelper(gp1) {
     EMPTY(0) EMPTY(1) EMPTY(2) EMPTY(3)
     EMPTY(4) case 5:exec_sub(s); break; EMPTY(6) EMPTY(7)
   }
-  printf("123");
 }
 
 /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
