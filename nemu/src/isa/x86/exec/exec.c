@@ -7,7 +7,7 @@ static inline void set_width(DecodeExecState *s, int width) {
   if (width == 0) {
     width = s->isa.is_operand_size_16 ? 2 : 4;
   }
-   s->src1.width = s->dest.width = s->src2.width = width;
+  s->width = s->src1.width = s->dest.width = s->src2.width = width;
 }
 
 /* 0x80, 0x81, 0x83 */
