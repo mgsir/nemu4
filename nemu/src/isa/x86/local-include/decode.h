@@ -197,8 +197,8 @@ static inline def_DHelper(test_I) {
 
 static inline def_DHelper(SI2E) {
   assert(id_dest->width == 2 || id_dest->width == 4);
-  puts("123");
   operand_rm(s, id_dest, true, NULL, false);
+  puts("123");
   id_src1->width = 1;
   decode_op_SI(s, id_src1, true);
   if (id_dest->width == 2) {
