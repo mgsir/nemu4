@@ -6,7 +6,7 @@ static inline def_EHelper(add) {
 }
 
 static inline def_EHelper(sub) {
-  rtl_sub(s,ddest,dsrc1,NULL);
+  rtl_sub(s,ddest,dsrc1,dsrc2);
   puts("1232");
   print_asm_template2(sub);
 }
