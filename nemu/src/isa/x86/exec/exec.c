@@ -18,6 +18,8 @@ static inline def_EHelper(gp1) {
   }
 }
 
+//EX(5,sub)
+
 /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
 static inline def_EHelper(gp2) {
   switch (s->isa.ext_opcode) {
@@ -112,6 +114,8 @@ again:
     IDEX (0xd3, gp2_cl2E, gp2)
     EX   (0xd6, nemu_trap)
     IDEX(0xe8,J,call)
+    //IDEX(0x68,push_SI,push)
+    //IDEX(0x83,mov_I2r,)
     IDEXW(0xf6, E, gp3, 1)
     IDEX (0xf7, E, gp3)
     IDEXW(0xfe, E, gp4, 1)
