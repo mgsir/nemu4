@@ -16,7 +16,6 @@ static inline def_EHelper(gp1) {
     EMPTY(0) EMPTY(1) EMPTY(2) EMPTY(3)
     EMPTY(4) case 5:exec_sub(s); break; EMPTY(6) EMPTY(7)
   }
-  printf("123");
 }
 
 /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
@@ -113,7 +112,7 @@ again:
     IDEX (0xd3, gp2_cl2E, gp2)
     EX   (0xd6, nemu_trap)
     IDEX(0xe8,J,call)
-    //IDEX(0x68,push_SI,push)
+    IDEX(0x50,r,push)
     //IDEX(0x83,mov_I2r,)
     IDEXW(0xf6, E, gp3, 1)
     IDEX (0xf7, E, gp3)
