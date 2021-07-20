@@ -33,7 +33,7 @@ static inline def_EHelper(ret) {
   rtlreg_t addr = reg_l(R_EBP);
 
   rtl_j(s, paddr_read(addr,s->width));
-  printf("%0x",paddr_read(addr,s->width));
+  printf("%0x",addr);
   print_asm("ret");
 }
 
