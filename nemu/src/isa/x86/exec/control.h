@@ -29,7 +29,7 @@ static inline def_EHelper(call) {
 }
 
 static inline def_EHelper(ret) {
-  TODO();
+  rtl_j(s,reg_l(R_ESP));
   print_asm("ret");
 }
 
