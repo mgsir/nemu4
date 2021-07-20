@@ -74,7 +74,6 @@ static inline void fetch_decode_exec(DecodeExecState *s) {
 
 again:
   opcode = instr_fetch(&s->seq_pc, 1);
-  if(opcode == 0) { nemu_state.state =  NEMU_END; return ;}
   s->opcode = opcode;
   switch (opcode) {
     EX   (0x0f, 2byte_esc)
