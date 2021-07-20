@@ -24,8 +24,7 @@ static inline def_EHelper(jmp_rm) {
 
 static inline def_EHelper(call) {
   // the target address is calculated at the decode stage
-  paddr_write(reg_l(R_ESP),s->seq_pc,s->width);
-
+  vaddr_write(reg_l(R_ESP),s->seq_pc,s->width);
   rtl_j(s,s->jmp_pc);
   print_asm("call %x", s->jmp_pc);
 }
