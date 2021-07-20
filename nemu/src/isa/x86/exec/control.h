@@ -24,13 +24,16 @@ static inline def_EHelper(jmp_rm) {
 
 static inline def_EHelper(call) {
   // the target address is calculated at the decode stage
-  vaddr_write(reg_l(R_ESP),s->seq_pc,s->width);
+  //paddr_write(reg_l(R_ESP),s->seq_pc,s->width);
   rtl_j(s,s->jmp_pc);
   print_asm("call %x", s->jmp_pc);
 }
 
 static inline def_EHelper(ret) {
-  rtl_j(s,reg_l(R_ESP));
+  rtlreg_t addr = (rtlreg_t )reg_l(R_ESP);
+  addr += 5;
+
+///  rtl_jr(s,addr);
   print_asm("ret");
 }
 
