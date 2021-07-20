@@ -30,8 +30,8 @@ static inline def_EHelper(call) {
 }
 
 static inline def_EHelper(ret) {
-  puts("123\n");
   uintptr_t addr0 = reg_l(R_ESP);
+  puts("123\n");
   rtlreg_t *addr = (void *)addr0;
   printf("%08x\n",*addr);
 
