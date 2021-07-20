@@ -113,6 +113,7 @@ again:
     EX   (0xd6, nemu_trap)
     IDEX(0xe8,J,call)
     IDEX(0x50,r,push)
+    
     IDEX(0x51,r,push)
     IDEX(0x52,r,push)
     IDEX(0x53,r,push)
@@ -120,6 +121,7 @@ again:
     IDEX(0x55,r,push)
     IDEX(0x56,r,push)
     IDEX(0x57,r,push)
+    IDEX(0x86,I,push)
     IDEXW(0xf6, E, gp3, 1)
     IDEX (0xf7, E, gp3)
     IDEXW(0xfe, E, gp4, 1)
