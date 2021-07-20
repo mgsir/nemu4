@@ -33,8 +33,8 @@ static inline def_EHelper(ret) {
   uintptr_t addr0 = reg_l(R_ESP);
   rtlreg_t *addr = (void *)addr0;
 
-  puts("123\n");
   rtl_j(s, *addr);
+  puts("123\n");
   print_asm("ret");
 }
 
