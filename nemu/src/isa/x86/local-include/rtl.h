@@ -28,8 +28,9 @@ static inline def_rtl(push, const rtlreg_t* src1) {
   // esp <- esp - 4
   // M[esp] <- src1
   word_t * pesp =  &reg_l(R_ESP);
-  *pesp -= s->width; 
-  paddr_write(*pesp,*src1,s->width);
+  *pesp -= 4; 
+  //vaddr_write((vaddr_t) (&reg_l(R_ESP)),reg_l(R_SP) - 4,4);
+  vaddr_write(*pesp,*src1,s->width);
 }
 
 static inline def_rtl(pop, rtlreg_t* dest) {
