@@ -30,10 +30,10 @@ static inline def_EHelper(call) {
 }
 
 static inline def_EHelper(ret) {
-  uintptr_t addr0 = reg_l(R_ESP);
-  rtlreg_t *addr = (void *)addr0;
+  int addr0 = reg_l(R_ESP);
+  //rtlreg_t *addr = (void *)addr0;
 
-if(addr == NULL)  puts("12233\n");
+printf("%0x\n",addr0);
   //rtl_j(s, *addr);
   print_asm("ret");
 }
