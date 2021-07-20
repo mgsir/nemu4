@@ -1,6 +1,7 @@
 #include <cpu/exec.h>
 #include "../local-include/decode.h"
 #include "all-instr.h"
+#include <monitor/monitor.h>
 
 static inline void set_width(DecodeExecState *s, int width) {
   if (width == -1) return;
@@ -70,8 +71,10 @@ static inline def_EHelper(2byte_esc) {
 
 static inline void fetch_decode_exec(DecodeExecState *s) {
   uint8_t opcode;
+
 again:
   opcode = instr_fetch(&s->seq_pc, 1);
+  if(opcode == 0) nemu_state.state =  NEMU_END;
   s->opcode = opcode;
   switch (opcode) {
     EX   (0x0f, 2byte_esc)
