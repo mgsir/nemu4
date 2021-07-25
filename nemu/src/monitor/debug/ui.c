@@ -232,6 +232,7 @@ void ui_mainloop() {
         if (cmd_table[i].handler(args) < 0) { return; }
         break;
       }
+
     }
 
     if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
