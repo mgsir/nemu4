@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "type_traits": "cpp",
+        "reg.h": "c",
+        "isa.h": "c",
+        "common.h": "c",
+        "debug.h": "c",
+        "*.tcc": "c",
+        "paddr.h": "c",
+        "stdarg.h": "c",
+        "cstdio": "c",
+        "cstdlib": "c",
+        "regex.h": "c",
+        "vaddr.h": "c",
+        "*.inc": "c"
+    }
+}
