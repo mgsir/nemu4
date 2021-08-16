@@ -43,6 +43,7 @@ void reg_test() {
   // rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
   //   vaddr_t pc;
 void isa_reg_display() {
+  /*                x86                  */
   printf("------------------show all registers---------------\n");
   printf("eax:0x%08x\n",cpu.eax);
   printf("ecx:0x%08x\n",cpu.ecx);

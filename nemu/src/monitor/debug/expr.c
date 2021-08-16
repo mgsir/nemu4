@@ -9,6 +9,7 @@
  */
 #include <regex.h>
 
+int skip_$_type = 0;
 enum {
   TK_NOTYPE = 256, TK_EQ, TK_NUM, TK_DEREF, TK_0X,TK_$, TK_LEQ, TK_NEQ,TK_AND, TK_REG
   /* TODO: Add more token types */
@@ -24,7 +25,10 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
-  {"[EePp][ADCBSDPadcbsdp][XIPxip]*",TK_REG}, // register
+  // {"[EePp][ADCBSDPadcbsdp][XIPxip]*",TK_REG}, // register and depend on ISA
+  {"\\$",TK_$}, //'$' must match index 0
+  {"[$][0]",TK_REG}, 
+  {"[rsgtpa][0-9acp][0-9]*",TK_REG}, //  depend on ISA(rsicv-32)  and can not support register '$0'
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"\\-", '-'},
@@ -34,13 +38,10 @@ static struct rule {
   {"\\)",')'},
   {"==", TK_EQ},        // equal
   {"0[xX]",TK_0X},
-  {"\\$",TK_$},
   {"<=",TK_LEQ}, // less and euqal
   {"!=",TK_NEQ}, // not equal
   {"&&",TK_AND},
   {"[0-9a-fA-F]*",TK_NUM},    // number
-
-
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -84,7 +85,9 @@ static bool make_token(char *e) {
 
   while (e[position] != '\0') {
     /* Try all rules one by one. */
-    for (i = 0; i < NR_REGEX; i ++) {
+    if(skip_$_type == 1) { i = 1; skip_$_type = 0;}
+    else  i = 0;
+    for (; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
@@ -165,9 +168,11 @@ static bool make_token(char *e) {
 
         tokens[nr_token] = temp;
         ++nr_token;
-
+        if(temp.type == TK_$) skip_$_type = 1;
         break;
       }
+
+
     }
 
     if (i == NR_REGEX) {
@@ -276,7 +281,7 @@ uint32_t eval(uint32_t p,  uint32_t q)
       case TK_AND:
         return eval(p,pos-1) && eval(pos+1,q);
       case TK_DEREF:
-        return vaddr_read(eval(pos+1,q),4);
+        return paddr_read(eval(pos+1,q),4);
       default: assert(0);
     }
 
@@ -333,6 +338,7 @@ void _dealwith_sepcial_sign(int type)
             tokens[j]  = tokens[j+1];
         }
         --nr_token;
+        --i;
     }
     else if(tokens[i].type == TK_$ && type == TK_$)
     {
@@ -349,12 +355,14 @@ void _dealwith_sepcial_sign(int type)
             tokens[j]  = tokens[j+1];
         }
         --nr_token;
+        --i;
     }else if(tokens[i].type == TK_NOTYPE && type == TK_NOTYPE){
         for(int j = i; j < nr_token - 1; ++j)
         {
             tokens[j]  = tokens[j+1];
         }
         --nr_token;
+        --i;
     }
 
   }
@@ -369,6 +377,9 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
 
+  /* deal with ' ' case */
+  _dealwith_sepcial_sign(TK_NOTYPE);
+
   for(uint32_t i = 0; i < nr_token; ++i)
   {
     if(tokens[i].type == '*' && (i == 0 || type_compare(tokens[i-1].type)))
@@ -377,12 +388,11 @@ word_t expr(char *e, bool *success) {
     }
   }
 
+  
   /* deal with '0x' case */
   _dealwith_sepcial_sign(TK_0X);
-  /* deal with '&' case */
+  /* deal with '$' case */
   _dealwith_sepcial_sign(TK_$);
-  /* deal with ' ' case */
-  _dealwith_sepcial_sign(TK_NOTYPE);
 
   return eval(0,nr_token-1);
 }
