@@ -20,6 +20,7 @@ static inline def_EHelper(jal){
   rtl_addi(s,&cpu.pc,&cpu.pc,id_src1->imm);
   s->jmp_pc = cpu.pc;
   s->is_jmp = true;
+  printf("0x%08x\n",cpu.pc);
   print_asm_template2(jal);
 }
 
