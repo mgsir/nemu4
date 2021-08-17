@@ -8,4 +8,3 @@
 
 def_EHelper(inv);
 def_EHelper(nemu_trap);
-def_EHelper(addi);

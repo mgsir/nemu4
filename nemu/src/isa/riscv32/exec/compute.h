@@ -3,7 +3,7 @@ static inline def_EHelper(lui) {
   print_asm_template2(lui);
 }
 
-static inline def_DHelper(addi){
+static inline def_EHelper(addi){
   rtl_addi(s,ddest,dsrc1,id_src2->imm);
   print_asm_template3(addi);
 }
