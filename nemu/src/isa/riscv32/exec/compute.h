@@ -21,6 +21,16 @@ static inline def_EHelper(jal){
   print_asm_template2(auipc);
 }
 
+static inline def_EHelper(jalr){
+
+  word_t t = cpu.pc + 4;
+  rtl_addi(s,&cpu.pc,ddest,id_src1->imm);
+  rtl_li(s,ddest,t);
+  print_asm_template2(auipc);
+}
+
+
+
 
 
 
