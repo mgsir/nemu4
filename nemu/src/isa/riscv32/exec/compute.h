@@ -1,5 +1,5 @@
 static inline def_EHelper(lui) {
-  rtl_li(s, ddest, id_src1->imm);
+  rtl_li(s, ddest, id_src1->imm << 12); // low bit was setten as zero
   print_asm_template2(lui);
 }
 
@@ -9,7 +9,7 @@ static inline def_EHelper(addi){
 }
 
 static inline def_EHelper(auipc){
-  rtl_addi(s,ddest,ddest,id_src1->imm << 12);
+  rtl_addi(s,ddest,&cpu.pc,id_src1->imm << 12);
   print_asm_template2(auipc);
 }
 
