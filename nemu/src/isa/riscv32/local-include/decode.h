@@ -40,8 +40,13 @@ static inline def_DHelper(S) {
   decode_op_r(s, id_dest, s->isa.instr.s.rs2, true);
 }
 
-static inline def_DHelper(J) {
-  decode_op_r(s, id_src1, s->isa.instr.i.rs1, true);
-  decode_op_i(s, id_src2, s->isa.instr.i.simm11_0, true);
-  decode_op_r(s, id_dest, s->isa.instr.i.rd, false);
+static inline def_DHelper(J1) {
+  decode_op_i(s, id_src1, s->isa.instr.j1.offset, true);
+  decode_op_r(s, id_dest, s->isa.instr.j1.rd, false);
+}
+
+static inline def_DHelper(J2){
+  decode_op_i(s, id_src2, s->isa.instr.j2.offset, true);
+  decode_op_r(s, id_src1, s->isa.instr.j2.rs1, true);
+  decode_op_r(s, id_dest, s->isa.instr.j2.rd, false);
 }

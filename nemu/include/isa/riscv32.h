@@ -28,6 +28,7 @@ typedef struct {
       uint32_t rs1       : 5;
       int32_t  simm11_0  :12;
     } i;
+    
     struct {
       uint32_t opcode1_0 : 2;
       uint32_t opcode6_2 : 5;
@@ -37,12 +38,33 @@ typedef struct {
       uint32_t rs2       : 5;
       int32_t  simm11_5  : 7;
     } s;
+
     struct {
       uint32_t opcode1_0 : 2;
       uint32_t opcode6_2 : 5;
       uint32_t rd        : 5;
       uint32_t imm31_12  :20;
     } u;
+
+    struct
+    {
+      uint32_t opcode1_0 : 2;
+      uint32_t opcode6_2 : 5;
+      uint32_t rd        : 5;
+      uint32_t offset    : 20;
+    } j1;
+    
+    struct 
+    {
+      uint32_t opcode1_0 : 2;
+      uint32_t opcode6_2 : 5;
+      uint32_t rd        : 5;
+      uint32_t funct3    : 3;
+      uint32_t rs1       : 5;
+      uint32_t offset    : 10;
+    }j2;
+    
+    
     uint32_t val;
   } instr;
 } riscv32_ISADecodeInfo;
