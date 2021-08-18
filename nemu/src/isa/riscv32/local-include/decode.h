@@ -8,10 +8,10 @@
 static inline def_DopHelper(i) {
   op->type = OP_TYPE_IMM;
  
-  // if(val & 0x00080000){
-  //   val = val | 0xfff00000;
-  //   printf("123");
-  // }
+  if(val & 0x00080000){
+    val = val | 0xfff00000;
+    printf("123");
+  }
   op->imm = val;
   // printf(" : 0x%08x\n",(int)val);
   print_Dop(op->str, OP_STR_SIZE, "%d", op->imm);
@@ -46,7 +46,8 @@ static inline def_DHelper(S) {
 }
 
 static inline def_DHelper(J) {
-  decode_op_i(s, id_src1, s->isa.instr.j.offset >> 8, true);
+  sword_t simm = (s->isa.instr.j.offset << 8) | (s->isa.instr.j.offset & 0x000ff); 
+  decode_op_i(s, id_src1,simm << 1, true);
   decode_op_r(s, id_dest, s->isa.instr.j.rd, false);
 }
 
