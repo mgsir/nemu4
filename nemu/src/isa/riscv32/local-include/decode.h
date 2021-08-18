@@ -7,9 +7,16 @@
 
 static inline def_DopHelper(i) {
   op->type = OP_TYPE_IMM;
-  
+  // if(val & 0x00080000){
+  //   for(int i = 20; i < 32; ++i)
+  //   {
+  //     val 
+  //   }
+  // }
+  printf("0x%08x\n",val);
   op->imm = (int)val;
  
+  printf("0x%08x\n",val);
   print_Dop(op->str, OP_STR_SIZE, "%d", op->imm);
 }
 
