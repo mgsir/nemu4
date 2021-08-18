@@ -51,10 +51,10 @@ typedef struct {
       uint32_t opcode1_0 : 2;
       uint32_t opcode6_2 : 5;
       uint32_t rd        : 5;
-      uint32_t offset1   : 10;
-      uint32_t offset2   :  1;
-      uint32_t offset3   :  8;
-      uint32_t offset4   :  1;
+      uint32_t imm19_12  : 8;
+      uint32_t imm_11   :  1;
+      uint32_t imm10_1   :  10;
+      uint32_t imm_20     :  1;
     } j;
     
  
