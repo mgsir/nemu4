@@ -8,7 +8,7 @@
 static inline def_DopHelper(i) {
   op->type = OP_TYPE_IMM;
  
-  if(val & 0x00080000){
+  if(val & 0x00100000){
     val = val | 0xfff00000;
     printf("123");
   }
