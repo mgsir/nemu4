@@ -7,8 +7,9 @@
 
 static inline def_DopHelper(i) {
   op->type = OP_TYPE_IMM;
-  op->imm = val;
-
+  
+  op->imm = (int)val;
+ 
   print_Dop(op->str, OP_STR_SIZE, "%d", op->imm);
 }
 
@@ -41,7 +42,7 @@ static inline def_DHelper(S) {
 }
 
 static inline def_DHelper(J) {
-  decode_op_i(s, id_src1, s->isa.instr.j.offset * 2, true);
+  decode_op_i(s, id_src1, s->isa.instr.j.offset << 1, true);
   decode_op_r(s, id_dest, s->isa.instr.j.rd, false);
 }
 
