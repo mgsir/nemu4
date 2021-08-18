@@ -10,6 +10,7 @@ static inline def_DopHelper(i) {
  
   if(val & 0x00080000){
     val = val | 0xfff00000;
+    printf("123");
   }
   op->imm = val;
   printf(" : 0x%08x\n",(int)val);
