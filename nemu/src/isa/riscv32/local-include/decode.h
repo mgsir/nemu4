@@ -8,12 +8,12 @@
 static inline def_DopHelper(i) {
   op->type = OP_TYPE_IMM;
  
-  if(val & 0x00080000){
-    val = val | 0xfff00000;
-    printf("123");
-  }
+  // if(val & 0x00080000){
+  //   val = val | 0xfff00000;
+  //   printf("123");
+  // }
   op->imm = val;
-  printf(" : 0x%08x\n",(int)val);
+  // printf(" : 0x%08x\n",(int)val);
   print_Dop(op->str, OP_STR_SIZE, "%d", op->imm);
 }
 
