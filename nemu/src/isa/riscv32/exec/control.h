@@ -1,13 +1,8 @@
 static inline def_EHelper(jal){
   rtl_addi(s,ddest,&cpu.pc,4);
-  rtl_add(s,&cpu.pc,&id_src1->val,&cpu.pc);
+  rtl_addi(s,&cpu.pc,&cpu.pc,id_src1->imm);
 
-//    t0 = cpu.pc + 4;
-//    rtl_sr(id_dest->reg, &t0, 4);
-   
-//    rtl_add(&decinfo.jmp_pc, &id_src->val, &cpu.pc);
-   //printf("jmp_pc = 0x%x\n", decinfo.jmp_pc);
-   rtl_j(s,cpu.pc);
+  rtl_j(s,cpu.pc);
   print_asm_template2(jal);
 }
 
