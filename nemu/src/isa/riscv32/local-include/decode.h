@@ -10,7 +10,7 @@ static inline def_DopHelper(i) {
  
   printf("0x%08x\n",val);
   op->imm = (int)val;
-  printf("0x%08x\n",(int)val);
+  printf(" : 0x%08x\n",(int)val);
   print_Dop(op->str, OP_STR_SIZE, "%d", op->imm);
 }
 
