@@ -46,7 +46,7 @@ static inline def_DHelper(S) {
 }
 
 static inline def_DHelper(J) {
-  sword_t simm = (s->isa.instr.j.offset << 8) | ((s->isa.instr.j.offset & 0x000ff) << 8); 
+  sword_t simm = (s->isa.instr.j.offset >> 8) | ((s->isa.instr.j.offset & 0x000ff) << 8); 
   printf(":: 0x%08x",simm);
   decode_op_i(s, id_src1,simm << 1, true);
   decode_op_r(s, id_dest, s->isa.instr.j.rd, false);
