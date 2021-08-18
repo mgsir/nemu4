@@ -17,7 +17,7 @@ static inline def_EHelper(auipc){
 static inline def_EHelper(jal){
 
   rtl_addi(s,ddest,&cpu.pc,4);
-  rtl_addi(s,&cpu.pc,&cpu.pc,id_src1->imm);
+  rtl_addi(s,&cpu.pc,&cpu.pc,id_src1->imm << 2);
   s->jmp_pc = cpu.pc;
   s->is_jmp = true;
   printf("0x%08x\n",cpu.pc);
