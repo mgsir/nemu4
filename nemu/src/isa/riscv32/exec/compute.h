@@ -16,7 +16,7 @@ static inline def_EHelper(auipc){
 
 static inline def_EHelper(jal){
   rtl_addi(s,ddest,&cpu.pc,4);
-  rtl_addi(s,&cpu.pc,&cpu.pc,id_src1->imm );
+  rtl_addi(s,&cpu.pc,&cpu.pc,id_src1->imm);
   s->jmp_pc = cpu.pc;
   s->is_jmp = true;
   print_asm_template2(jal);
@@ -29,6 +29,7 @@ static inline def_EHelper(jalr){
   temp = temp & 0xfffffffe;
   rtl_li(s,&cpu.pc,temp);
   rtl_li(s,ddest,t);
+
   rtl_j(s,cpu.pc);
   print_asm_template3(jalr);
 }
