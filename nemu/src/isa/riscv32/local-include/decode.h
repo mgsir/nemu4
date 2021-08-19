@@ -13,11 +13,11 @@ static inline def_DopHelper(i) {
  
   if( (val & 0x00100000) && (mode_switch ==1) ){
     val = val | 0xfff00000;
-    printf("123");
+    // printf("123");
   }
   else if((val & 0x800) && !mode_switch){
     val = val | 0xfffff000;
-    printf("123");
+    // printf("123");
   }
 
   op->imm = val;
