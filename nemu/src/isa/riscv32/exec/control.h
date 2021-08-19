@@ -24,8 +24,8 @@ static inline def_EHelper(bne){
   if(temp!=0)
   {
     rtl_addi(s,&cpu.pc,&cpu.pc,id_dest->imm);
+    rtl_j(s,cpu.pc);
   }
-  rtl_j(s,cpu.pc);
   print_asm_template3(bne);
 }
 
