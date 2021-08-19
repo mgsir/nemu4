@@ -25,7 +25,7 @@ static inline def_rtl(not, rtlreg_t *dest, const rtlreg_t* src1) {
 static inline def_rtl(neg, rtlreg_t *dest, const rtlreg_t* src1) {
   // dest <- -src1
   // TODO();
-  *dest = - (*src1);
+  rtl_sub(s,dest,rz,src1);
 }
 
 static inline def_rtl(sext, rtlreg_t* dest, const rtlreg_t* src1, int width) {
@@ -33,8 +33,8 @@ static inline def_rtl(sext, rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // TODO();
   *dest = * src1;
 
-  if((*src1) >> (width * 8-1))
-  {
+  // if((*src1) >> (width * 8-1))
+  // {
     word_t pos = width * 8;
 
     for (int i = 0; i < sizeof(word_t) - width * 8; ++i)
@@ -42,13 +42,27 @@ static inline def_rtl(sext, rtlreg_t* dest, const rtlreg_t* src1, int width) {
       *dest = *dest | (1 << pos);
       pos++;
     }
-  }
+  // }
 }
 
 static inline def_rtl(zext, rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- zeroext(src1[(width * 8 - 1) .. 0])
   // TODO();
-  *dest = *src1;
+  word_t max_bit = 0xffffffff;
+  *dest = (*src1) | (max_bit >> (width));
+
+
+  // if((*src1) >> (width * 8-1) == 0)
+  // {
+    // word_t pos = width * 8;
+
+    // for (int i = 0; i < sizeof(word_t) - width * 8; ++i)
+    // {
+    //   *dest = *dest & (0 << pos);
+    //   pos++;
+    // }
+  // }
+
 }
 
 static inline def_rtl(msb, rtlreg_t* dest, const rtlreg_t* src1, int width) {

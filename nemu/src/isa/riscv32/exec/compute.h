@@ -55,6 +55,13 @@ static inline def_EHelper(srai){
   print_asm_template3(srai)
 }
 
+static inline def_EHelper(sltiu){
+  rtlreg_t temp = id_src2->imm;
+  rtl_zext(s,&temp,&temp,12);
+  cpu.gpr[*ddest]._32 = (cpu.gpr[*dsrc1]._32 < temp);
+  print_asm_template3(stliu)
+}
+
 static inline def_EHelper(xor){
   rtl_xor(s,ddest,dsrc1,dsrc2);
   print_asm_template3(xor)
