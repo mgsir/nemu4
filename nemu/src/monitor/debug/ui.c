@@ -101,7 +101,8 @@ static int cmd_si(char *args)
   if(args == NULL)
   {
     printf("%d---",++exec_count);
-    isa_exec_once();
+    cpu_exec(1);
+    // isa_exec_once();
     // print_asm();
     return 0;
   }
@@ -109,7 +110,7 @@ static int cmd_si(char *args)
   uint32_t n = atoi(args);
   for(int i = 0; i < n; ++i ) { 
     printf("%d---",++exec_count);
-    isa_exec_once(); 
+    cpu_exec(1);
     // print_asm();
     }
 
