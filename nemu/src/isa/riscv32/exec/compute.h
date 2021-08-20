@@ -75,7 +75,7 @@ static inline def_EHelper(slt){
 
 
 static inline def_EHelper(sltu){
-  rtl_setrelop(s,RELOP_LEU,ddest,dsrc1,dsrc2);
+  rtl_setrelop(s,RELOP_LTU,ddest,dsrc1,dsrc2);
   print_asm_template3(sltu)
 }
 
