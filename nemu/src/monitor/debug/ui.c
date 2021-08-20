@@ -9,6 +9,8 @@
 #include <readline/history.h>
 
 
+int exec_count = 0;
+
 void cpu_exec(uint64_t);
 int is_batch_mode();
 
@@ -99,12 +101,17 @@ static int cmd_si(char *args)
   if(args == NULL)
   {
     isa_exec_once();
+    printf("%d---",++exec_count);
     print_asm();
     return 0;
   }
 
   uint32_t n = atoi(args);
-  for(int i = 0; i < n; ++i ) { isa_exec_once(); print_asm();}
+  for(int i = 0; i < n; ++i ) { 
+    isa_exec_once(); 
+    printf("%d---",++exec_count);
+    print_asm();
+    }
 
   return 0;
 }
