@@ -71,15 +71,8 @@ static inline def_EHelper(branch)
   
   switch(s->isa.instr.b.funct3)
   {
-    EX(0b000,addi)
-    EX(0b001,slli)
-    switch (0xfe0 & s->isa.instr.i.simm11_0)
-    {
-      EX(0b000000000000,srli)
-      EX(0b010000000000,srai)
-    }
-    EX(0b011,sltiu)
-    break;
+    EX(0b001,bne)
+    EX(0b000,beq)
   }
 }
 
