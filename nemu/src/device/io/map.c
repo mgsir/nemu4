@@ -18,9 +18,9 @@ uint8_t* new_space(int size) {
 }
 
 static inline void check_bound(IOMap *map, paddr_t addr) {
-  Assert(map != NULL && addr <= map->high && addr >= map->low,
-      "address (0x%08x) is out of bound {%s} [0x%08x, 0x%08x] at pc = " FMT_WORD,
-      addr, (map ? map->name : "???"), (map ? map->low : 0), (map ? map->high : 0), cpu.pc);
+  // Assert(map != NULL && addr <= map->high && addr >= map->low,
+  //     "address (0x%08x) is out of bound {%s} [0x%08x, 0x%08x] at pc = " FMT_WORD,
+  //     addr, (map ? map->name : "???"), (map ? map->low : 0), (map ? map->high : 0), cpu.pc);
 }
 
 static inline void invoke_callback(io_callback_t c, paddr_t offset, int len, bool is_write) {
