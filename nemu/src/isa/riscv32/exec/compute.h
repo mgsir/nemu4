@@ -52,7 +52,6 @@ static inline def_EHelper(sra){
 
 static inline def_EHelper(srai){
   rtl_sari(s,ddest,dsrc1,id_src2->imm & 0x01f);
-  printf("132\n");
   print_asm_template3(srai)
 }
 
