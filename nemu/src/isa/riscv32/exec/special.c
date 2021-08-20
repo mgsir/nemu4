@@ -24,6 +24,7 @@ def_EHelper(inv) {
 def_EHelper(nemu_trap) {
   difftest_skip_ref();
 
+  printf("\na0:%d\n",reg_l(10));
   rtl_exit(NEMU_END, cpu.pc, reg_l(10)); // gpr[10] is $a0
 
   print_asm("nemu trap");
