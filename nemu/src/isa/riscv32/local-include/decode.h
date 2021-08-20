@@ -76,6 +76,6 @@ static inline def_DHelper(B){
   decode_op_r(s,id_src1,s->isa.instr.b.rs1,true);
   decode_op_r(s,id_src2,s->isa.instr.b.rs2,true);
   sword_t simm = ( s->isa.instr.b.imm4_1 << 1) | (s->isa.instr.b.imm10_5 << 5) | (s->isa.instr.b.imm11 << 11) | (s->isa.instr.b.imm12 << 12) ; 
-  printf("0x%08x",simm);
+  printf("0x%08x\n",simm);
   decode_op_i(s,id_dest,simm, true);
 }
