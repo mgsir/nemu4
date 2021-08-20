@@ -59,7 +59,7 @@ static inline def_EHelper(sltiu){
   // rtlreg_t temp = id_src2->imm;
   // rtl_zext(s,&temp,&temp,12);
   // cpu.gpr[*ddest]._32 = (cpu.gpr[*dsrc1]._32 < temp);
-  rtl_setrelopi(s,RELOP_LEU,ddest,dsrc1,id_src2->imm);
+  rtl_setrelopi(s,RELOP_LTU,ddest,dsrc1,id_src2->imm);
   print_asm_template3(sltiu);
 }
 
@@ -69,9 +69,7 @@ static inline def_EHelper(xor){
 }
 
 static inline def_EHelper(slt){
-  // rtl_setrelop(s,RELOP_LE,ddest,dsrc1,dsrc2);
-  if((sword_t)*dsrc1 < (sword_t)*dsrc2) *ddest = 1; 
-  else *ddest = 0;
+  rtl_setrelop(s,RELOP_LT,ddest,dsrc1,dsrc2);
   print_asm_template3(slt)
 }
 
