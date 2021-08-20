@@ -30,3 +30,14 @@ static inline def_EHelper(bne){
 }
 
 
+
+static inline def_EHelper(beq){
+  rtlreg_t temp;
+  rtl_setrelop(s,RELOP_EQ,&temp,dsrc1,dsrc2);
+  if(temp!=0)
+  {
+    rtl_addi(s,&cpu.pc,&cpu.pc,id_dest->imm);
+    rtl_j(s,cpu.pc);
+  }
+  print_asm_template3(beq);
+}
