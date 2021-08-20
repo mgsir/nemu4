@@ -68,7 +68,21 @@ static inline def_EHelper(xor){
   print_asm_template3(xor)
 }
 
+static inline def_EHelper(slt){
+  rtl_setrelop(s,RELOP_LE,ddest,dsrc1,dsrc2);
+  print_asm_template3(slt)
+}
 
 
+static inline def_EHelper(sltu){
+  rtl_setrelop(s,RELOP_LEU,ddest,dsrc1,dsrc2);
+  print_asm_template3(sltu)
 
+}
+
+
+static inline def_EHelper(and){
+  rtl_and(s,ddest,dsrc1,dsrc2);
+  print_asm_template3(and);
+}
 

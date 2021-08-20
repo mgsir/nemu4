@@ -38,10 +38,8 @@ static inline def_EHelper(compute)
       }
       break;
     EX(0b001, sll)
-    
-    // EX(0b010,slt) 
-
-    // EX(0b011,sltu)
+    EX(0b010,slt) 
+    EX(0b011,sltu)
     EX(0b100,xor)
     case 0b101:
       switch (s->isa.instr.r.funct7)
@@ -50,8 +48,8 @@ static inline def_EHelper(compute)
         EX(0b0100000, sra)
       }
       break;
-    // EX(0b110,xor)
-    // EX(0b111,and)
+    EX(0b110,xor)
+    EX(0b111,and)
     default: exec_inv(s);
   }
 }
