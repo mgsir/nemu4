@@ -102,7 +102,7 @@ static int cmd_si(char *args)
   {
     printf("%d---",++exec_count);
     isa_exec_once();
-    print_asm();
+    // print_asm();
     return 0;
   }
 
@@ -110,7 +110,7 @@ static int cmd_si(char *args)
   for(int i = 0; i < n; ++i ) { 
     printf("%d---",++exec_count);
     isa_exec_once(); 
-    print_asm();
+    // print_asm();
     }
 
   return 0;
