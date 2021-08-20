@@ -70,7 +70,8 @@ static inline def_EHelper(xor){
 
 static inline def_EHelper(slt){
   // rtl_setrelop(s,RELOP_LE,ddest,dsrc1,dsrc2);
-  if(*dsrc1 < *dsrc2) *ddest = 1; 
+  if((sword_t)*dsrc1 < (sword_t)*dsrc2) *ddest = 1; 
+  else *ddest = 0;
   print_asm_template3(slt)
 }
 
