@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+int exec_count = 0;
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
  * This is useful when you use the `si' command.
@@ -96,6 +97,7 @@ void cpu_exec(uint64_t n) {
     g_nr_guest_instr ++;
 
 #ifdef DEBUG
+    printf("%d---",++exec_count);
     asm_print(this_pc, seq_pc - this_pc, n < MAX_INSTR_TO_PRINT);
 
     /* TODO: check watchpoints here. */
