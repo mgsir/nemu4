@@ -60,7 +60,7 @@ static inline def_EHelper(sltiu){
   // rtl_zext(s,&temp,&temp,12);
   // cpu.gpr[*ddest]._32 = (cpu.gpr[*dsrc1]._32 < temp);
   rtl_setrelopi(s,RELOP_LEU,ddest,dsrc1,id_src2->imm);
-  print_asm_template3(stliu);
+  print_asm_template3(sltiu);
 }
 
 static inline def_EHelper(xor){
@@ -77,7 +77,6 @@ static inline def_EHelper(slt){
 static inline def_EHelper(sltu){
   rtl_setrelop(s,RELOP_LEU,ddest,dsrc1,dsrc2);
   print_asm_template3(sltu)
-
 }
 
 
