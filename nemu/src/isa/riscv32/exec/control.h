@@ -20,8 +20,7 @@ static inline def_EHelper(jalr){
 
 static inline def_EHelper(bne){
   rtlreg_t temp;
-  // rtl_setrelop(s,RELOP_NE,&temp,dsrc1,dsrc2);
-  if(*dsrc1 != *dsrc2) temp = 0;
+  rtl_setrelop(s,RELOP_NE,&temp,dsrc1,dsrc2);
   if(temp!=0)
   {
     rtl_addi(s,&cpu.pc,&cpu.pc,id_dest->imm);
