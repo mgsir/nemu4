@@ -41,3 +41,47 @@ static inline def_EHelper(beq){
   }
   print_asm_template3(beq);
 }
+
+static inline def_EHelper(blt){
+  rtlreg_t temp;
+  rtl_setrelop(s,RELOP_LT,&temp,dsrc1,dsrc2);
+  if(temp!=0)
+  {
+    rtl_addi(s,&cpu.pc,&cpu.pc,id_dest->imm);
+    rtl_j(s,cpu.pc);
+  }
+  print_asm_template3(blt);
+}
+
+static inline def_EHelper(bge){
+  rtlreg_t temp;
+  rtl_setrelop(s,RELOP_GE,&temp,dsrc1,dsrc2);
+  if(temp!=0)
+  {
+    rtl_addi(s,&cpu.pc,&cpu.pc,id_dest->imm);
+    rtl_j(s,cpu.pc);
+  }
+  print_asm_template3(bge);
+}
+
+static inline def_EHelper(bltu){
+  rtlreg_t temp;
+  rtl_setrelop(s,RELOP_LTU,&temp,dsrc1,dsrc2);
+  if(temp!=0)
+  {
+    rtl_addi(s,&cpu.pc,&cpu.pc,id_dest->imm);
+    rtl_j(s,cpu.pc);
+  }
+  print_asm_template3(bltu);
+}
+
+static inline def_EHelper(bgeu){
+  rtlreg_t temp;
+  rtl_setrelop(s,RELOP_GEU,&temp,dsrc1,dsrc2);
+  if(temp!=0)
+  {
+    rtl_addi(s,&cpu.pc,&cpu.pc,id_dest->imm);
+    rtl_j(s,cpu.pc);
+  }
+  print_asm_template3(bgeu);
+}

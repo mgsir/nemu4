@@ -9,6 +9,10 @@ static inline void set_width(DecodeExecState *s, int width) {
 static inline def_EHelper(load) {
   switch (s->isa.instr.i.funct3) {
     EXW  (2, ld, 4)
+    EXW  (0b000,lds,1)
+    EXW  (0b001,lds,2)
+    EXW  (0b100,ld,1)
+    EXW  (0b101,ld,2)
     default: exec_inv(s);
   }
 }
@@ -16,6 +20,8 @@ static inline def_EHelper(load) {
 static inline def_EHelper(store) {
   switch (s->isa.instr.s.funct3) {
     EXW  (2, st, 4)
+    EXW  (0b000, st, 1)
+    EXW  (0b001, st, 2)
     default: exec_inv(s);
   }
 }
@@ -73,6 +79,10 @@ static inline def_EHelper(branch)
   {
     EX(0b001,bne)
     EX(0b000,beq)
+    EX(0b100,blt)
+    EX(0b101,bge)
+    EX(0b110,bltu)
+    EX(0b111,bgeu)
   }
 }
 
