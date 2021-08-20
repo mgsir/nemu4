@@ -60,7 +60,7 @@ static inline def_EHelper(computei)
   {
     EX(0b000,addi)
     EX(0b001,slli)
-    switch (0xfe0 & s->isa.instr.i.simm11_0)
+    switch (0xfc0 & s->isa.instr.i.simm11_0 )
     {
       EX(0b000000000000,srli)
       EX(0b010000000000,srai)
