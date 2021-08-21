@@ -50,7 +50,7 @@ static inline def_EHelper(compute)
         EX(0b0100000, sra)
       }
       break;
-      EX(0b110, xor)
+      EX(0b110, or)
       EX(0b111, and)
     default:
       exec_inv(s);
@@ -87,7 +87,8 @@ static inline def_EHelper(computei)
     }
     break;
     EX(0b011,sltiu)
-    EX(0b110,xori)
+    EX(0b100,xori)
+    EX(0b110,ori)
     EX(0b111,andi)
     break;
   }

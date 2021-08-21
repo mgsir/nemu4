@@ -24,6 +24,8 @@ static inline def_EHelper(auipc){
 }
 
 
+
+
 static inline def_EHelper(sll){
   rtl_shl(s,ddest,dsrc1,dsrc2);
   print_asm_template3(sll)
@@ -61,6 +63,16 @@ static inline def_EHelper(sltiu){
   // cpu.gpr[*ddest]._32 = (cpu.gpr[*dsrc1]._32 < temp);
   rtl_setrelopi(s,RELOP_LTU,ddest,dsrc1,id_src2->imm);
   print_asm_template3(sltiu);
+}
+
+static inline def_EHelper(or){
+  rtl_or(s,ddest,dsrc1,dsrc2);
+  print_asm_template3(or);
+}
+
+static inline def_EHelper(ori){
+  rtl_ori(s,ddest,dsrc1,id_src2->imm);
+  print_asm_template3(ori);
 }
 
 static inline def_EHelper(xor){
@@ -126,6 +138,8 @@ static inline def_EHelper(mulhsu)
   *ddest = (((int64_t)(sword_t)(*dsrc1) * (uint64_t)(dsrc2)) >> 32);
   print_asm_template3(mulhsu);
 }
+
+
 
 static inline def_EHelper(div)
 {
