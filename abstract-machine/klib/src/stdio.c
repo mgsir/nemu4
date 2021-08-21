@@ -80,7 +80,7 @@ int sprintf(char *out, const char *fmt, ...) {
 
   while(c)
   {
-    if (*(fmt - 2) == '%')
+    if (*(fmt - 1) == '%')
     {
 
       switch (c)
