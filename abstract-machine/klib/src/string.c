@@ -94,7 +94,18 @@ void* memcpy(void* out, const void* in, size_t n) {
 }
 
 int memcmp(const void* s1, const void* s2, size_t n) {
-  return 0;
+
+  const unsigned char * temp_s1 = s1;
+  const unsigned char * temp_s2 = s2;
+  size_t i = 0;
+
+  for(; i < n; ++i)
+  {
+    if(temp_s1[i] > temp_s2[i]) return 1;
+    else if(temp_s1[i] < temp_s2[i]) return -1;
+  }
+
+ return 0;
 }
 
 #endif
