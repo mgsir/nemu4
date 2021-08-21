@@ -73,8 +73,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 }
 
 
-
-
 int sprintf(char *out, const char *fmt, ...) {
   va_list ap;
   char c = *fmt;
