@@ -66,7 +66,59 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 }
 
 int sprintf(char *out, const char *fmt, ...) {
-  return 0;
+  va_list ap;
+  char c = *fmt;
+
+  va_start(ap,fmt);
+  int print_cnt = 0;
+  int num;
+  char *str;
+
+  while(c)
+  {
+    switch (c)
+    {
+    case 'd':
+      num = va_arg(ap,int);
+      if(num == 0) { out[print_cnt] = '0'; ++print_cnt;}
+      else{
+        int num_len = 0;
+        int temp_num = num;
+        int arr_num[100];
+        while(temp_num)
+        {
+          temp_num /= 10;
+          arr_num[num_len] = temp_num % 10;
+          ++num_len;
+        }
+
+        for(size_t i = num_len-1; i  >= 0 ;--i)
+        {
+          out[print_cnt] = arr_num[i] - '0';
+          ++print_cnt;
+        }
+      }
+      break;
+    case 's':
+       str = va_arg(ap,char *);
+      for(size_t i = 0; i < strlen(str); ++i)
+      {
+        out[print_cnt] = str[i];
+        ++print_cnt;
+      }
+      break;
+    default:
+      putch(c);
+      out[print_cnt] = c;
+      ++print_cnt;
+    }
+
+    c = *(++fmt);
+  }
+
+  va_end(ap);
+  
+  return print_cnt;
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
