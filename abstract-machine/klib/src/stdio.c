@@ -17,7 +17,6 @@ int printf(const char *fmt, ...) {
 
   while(c)
   {
-    c = *++fmt;
     switch (c)
     {
     case 'd':
@@ -34,7 +33,7 @@ int printf(const char *fmt, ...) {
           ++num_len;
         }
 
-        for(size_t i = 0; i  < num_len ;++i)
+        for(size_t i = num_len-1; i  >= 0 ;--i)
         {
           putch(arr_num[i] - '0');
           ++print_cnt;
@@ -53,6 +52,8 @@ int printf(const char *fmt, ...) {
       putch(c);
       ++print_cnt;
     }
+
+    c = *(++fmt);
   }
 
   va_end(ap);
