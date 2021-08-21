@@ -91,7 +91,7 @@ int sprintf(char *out, const char *fmt, ...) {
           ++num_len;
         }
 
-        for(size_t i = num_len-1; i  >= 0 ;--i)
+        for(int i = num_len-1; i  >= 0 ;--i)
         {
           out[print_cnt++] = arr_num[i] - '0';
         }
