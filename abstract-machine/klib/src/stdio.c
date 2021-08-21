@@ -83,12 +83,11 @@ int sprintf(char *out, const char *fmt, ...) {
       if(num == 0) { out[print_cnt++] = '0';}
       else{
         int num_len = 0;
-        int temp_num = num;
         int arr_num[100];
-        while(temp_num)
+        while(num)
         {
-          temp_num /= 10;
-          arr_num[num_len] = temp_num % 10;
+          num /= 10;
+          arr_num[num_len] = num % 10;
           ++num_len;
         }
 
@@ -99,7 +98,7 @@ int sprintf(char *out, const char *fmt, ...) {
       }
       break;
     case 's':
-       str = va_arg(ap,char *);
+      str = va_arg(ap,char *);
       for(size_t i = 0; i < strlen(str); ++i)
       {
         out[print_cnt++] = str[i];
