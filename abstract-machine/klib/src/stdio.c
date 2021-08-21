@@ -116,8 +116,11 @@ int sprintf(char *out, const char *fmt, ...) {
         }
         break;
       default:
-        if(c != '%' && ((fmt-1) != NULL && *(fmt-1)!= '%'))out[print_cnt++] = c;
+        if(c != '%' && ((fmt-1) != NULL && *(fmt-1)!= '%')) out[print_cnt++] = c;
       }
+    }else{
+
+        if(c != '%' && ((fmt-1) != NULL && *(fmt-1)!= '%')) out[print_cnt++] = c;
     }
     // pre = *fmt;
     c = *(++fmt);
