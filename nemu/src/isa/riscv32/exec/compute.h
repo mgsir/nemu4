@@ -28,33 +28,33 @@ static inline def_EHelper(auipc){
 
 static inline def_EHelper(sll){
   rtl_shl(s,ddest,dsrc1,dsrc2);
-  print_asm_template3(sll)
+  print_asm_template3(sll);
 }
 
 static inline def_EHelper(slli){
-  rtl_shli(s,ddest,dsrc1,id_src2->imm & 0x01f);
-  print_asm_template3(slli)
+  rtl_shli(s,ddest,dsrc1,id_src2->imm);
+  print_asm_template3(slli);
 }
 
 static inline def_EHelper(srl){
   rtl_shr(s,ddest,dsrc1,dsrc2);
-  print_asm_template3(srl)
+  print_asm_template3(srl);
 }
 
 static inline def_EHelper(srli){
-  rtl_shri(s,ddest,dsrc1,id_src2->imm & 0x01f);
-  print_asm_template3(srli)
+  rtl_shri(s,ddest,dsrc1,id_src2->imm);
+  print_asm_template3(srli);
 }
 
 
 static inline def_EHelper(sra){
   rtl_sar(s,ddest,dsrc1,dsrc2);
-  print_asm_template3(sra)
+  print_asm_template3(sra);
 }
 
 static inline def_EHelper(srai){
-  rtl_sari(s,ddest,dsrc1,id_src2->imm & 0x01f);
-  print_asm_template3(srai)
+  rtl_sari(s,ddest,dsrc1,id_src2->imm);
+  print_asm_template3(srai);
 }
 
 static inline def_EHelper(sltiu){
@@ -77,7 +77,7 @@ static inline def_EHelper(ori){
 
 static inline def_EHelper(xor){
   rtl_xor(s,ddest,dsrc1,dsrc2);
-  print_asm_template3(xor)
+  print_asm_template3(xor);
 }
 
 static inline def_EHelper(xori){
@@ -87,13 +87,13 @@ static inline def_EHelper(xori){
 
 static inline def_EHelper(slt){
   rtl_setrelop(s,RELOP_LT,ddest,dsrc1,dsrc2);
-  print_asm_template3(slt)
+  print_asm_template3(slt);
 }
 
 
 static inline def_EHelper(sltu){
   rtl_setrelop(s,RELOP_LTU,ddest,dsrc1,dsrc2);
-  print_asm_template3(sltu)
+  print_asm_template3(sltu);
 }
 
 
