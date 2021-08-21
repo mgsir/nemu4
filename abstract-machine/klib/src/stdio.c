@@ -80,7 +80,7 @@ int sprintf(char *out, const char *fmt, ...) {
     {
     case 'd':
       num = va_arg(ap,int);
-      if(num == 0) { out[print_cnt] = '0'; ++print_cnt;}
+      if(num == 0) { out[print_cnt++] = '0';}
       else{
         int num_len = 0;
         int temp_num = num;
@@ -94,8 +94,7 @@ int sprintf(char *out, const char *fmt, ...) {
 
         for(size_t i = num_len-1; i  >= 0 ;--i)
         {
-          out[print_cnt] = arr_num[i] - '0';
-          ++print_cnt;
+          out[print_cnt++] = arr_num[i] - '0';
         }
       }
       break;
@@ -103,14 +102,11 @@ int sprintf(char *out, const char *fmt, ...) {
        str = va_arg(ap,char *);
       for(size_t i = 0; i < strlen(str); ++i)
       {
-        out[print_cnt] = str[i];
-        ++print_cnt;
+        out[print_cnt++] = str[i];
       }
       break;
     default:
-      putch(c);
-      out[print_cnt] = c;
-      ++print_cnt;
+      out[print_cnt++] = c;
     }
 
     c = *(++fmt);
