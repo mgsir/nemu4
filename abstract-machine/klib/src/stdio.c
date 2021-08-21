@@ -108,7 +108,7 @@ int sprintf(char *out, const char *fmt, ...) {
     default:
       out[print_cnt++] = c;
     }
-
+    out[print_cnt] = '\0';
     c = *(++fmt);
   }
 
