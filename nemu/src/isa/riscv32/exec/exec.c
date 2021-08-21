@@ -28,8 +28,10 @@ static inline def_EHelper(store) {
 
 static inline def_EHelper(compute)
 {
-  switch (s->isa.instr.r.funct3)
+  if (s->isa.instr.r.funct7 == 0b0000000 || s->isa.instr.r.funct7 == 0b0100000)
   {
+    switch (s->isa.instr.r.funct3)
+    {
     case 0b000:
       switch (s->isa.instr.r.funct7)
       {
@@ -37,10 +39,10 @@ static inline def_EHelper(compute)
         EX(0b0100000, sub)
       }
       break;
-    EX(0b001, sll)
-    EX(0b010,slt) 
-    EX(0b011,sltu)
-    EX(0b100,xor)
+      EX(0b001, sll)
+      EX(0b010, slt)
+      EX(0b011, sltu)
+      EX(0b100, xor)
     case 0b101:
       switch (s->isa.instr.r.funct7)
       {
@@ -48,10 +50,27 @@ static inline def_EHelper(compute)
         EX(0b0100000, sra)
       }
       break;
-    EX(0b110,xor)
-    EX(0b111,and)
-    default: exec_inv(s);
+      EX(0b110, xor)
+      EX(0b111, and)
+    default:
+      exec_inv(s);
+    }
   }
+  else if(s->isa.instr.r.funct7 == 0b0000001)
+  {
+    switch (s->isa.instr.r.funct3)
+    {
+      EX(0b000, mul)
+      EX(0b001, mulh)
+      EX(0b010, mulhsu)
+      EX(0b011, mulhu)
+      EX(0b100, div)
+      EX(0b101, divu)
+      EX(0b110, rem)
+      EX(0b111, remu)
+    }
+  }
+
 }
 
 static inline def_EHelper(computei)
