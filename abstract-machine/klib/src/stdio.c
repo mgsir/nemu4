@@ -9,6 +9,7 @@ int printf(const char *fmt, ...) {
 
   va_list ap;
   char c = *fmt;
+  // char pre ;
 
   va_start(ap,fmt);
   int print_cnt = 0;
@@ -17,49 +18,55 @@ int printf(const char *fmt, ...) {
 
   while(c)
   {
-    switch (c)
+    if ( (fmt - 1) != NULL && *(fmt - 1) == '%')
     {
-    case 'd':
-      num = va_arg(ap,int);
-      if(num == 0) { putch('0'); ++print_cnt;}
-      else{
-        int num_len = 0;
-        int temp_num = num;
-        int arr_num[100];
-        while(temp_num)
-        {
-          temp_num /= 10;
-          arr_num[num_len] = temp_num % 10;
-          ++num_len;
-        }
 
-        for(size_t i = num_len-1; i  >= 0 ;--i)
-        {
-          putch(arr_num[i] - '0');
-          ++print_cnt;
-        }
-      }
-      break;
-    case 's':
-       str = va_arg(ap,char *);
-      for(size_t i = 0; i < strlen(str); ++i)
+      switch (c)
       {
-        putch(str[i]);
-        ++print_cnt;
-      }
-      break;
-    default:
-      putch(c);
-      ++print_cnt;
-    }
+      case 'd':
+        num = va_arg(ap, int);
+        if (num == 0)
+        {
+          putch('0');
+        }
+        else
+        {
+          int num_len = 0;
+          int arr_num[1000];
+          while (num)
+          {
+            arr_num[num_len] = num % 10;
+            num /= 10;
+            ++num_len;
+          }
 
+          for (int i = num_len - 1; i >= 0; --i)
+          {
+            putch(arr_num[i] - 0 + '0');
+          }
+        }
+        break;
+      case 's':
+        str = va_arg(ap, char *);
+        for (int i = 0; i < strlen(str); ++i)
+        {
+            putch(str[i]);
+        }
+        break;
+      default:
+         putch(c);
+      }
+    }else{
+
+        if(c != '%' ) putch(c);
+    }
     c = *(++fmt);
   }
 
   va_end(ap);
-  
   return print_cnt;
 }
+
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
   return 0;
