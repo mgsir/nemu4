@@ -29,7 +29,12 @@ char *strcpy(char* dst,const char* src) {
 
 
 char* strcat(char* dst, const char* src) {
-  return NULL;
+  int dst_len = strlen(dst);
+  
+  size_t i = 0;
+  for(; i < strlen(src); ++i) dst[dst_len+i] = src[i];
+  dst[dst_len+i] = '\0';
+  return dst;
 }
 
 int strcmp(const char* s1, const char* s2) {
