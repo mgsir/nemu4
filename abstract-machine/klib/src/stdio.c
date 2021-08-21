@@ -111,7 +111,7 @@ int sprintf(char *out, const char *fmt, ...) {
     c = *(++fmt);
   }
 
-    out[print_cnt] = '\0';
+    // out[print_cnt] = '\0';
   va_end(ap);
   
   return print_cnt;
