@@ -80,7 +80,7 @@ int sprintf(char *out, const char *fmt, ...) {
 
   while(c)
   {
-    if (*(fmt - 1) == '%')
+    if ( (fmt - 1) != NULL && *(fmt - 1) == '%')
     {
 
       switch (c)
@@ -116,13 +116,12 @@ int sprintf(char *out, const char *fmt, ...) {
         }
         break;
       default:
-        if(c != '%' && ((fmt-1) != NULL && *(fmt-1)!= '%')) out[print_cnt++] = c;
+         out[print_cnt++] = c;
       }
     }else{
 
-        if(c != '%' && ((fmt-1) != NULL && *(fmt-1)!= '%')) out[print_cnt++] = c;
+        if(c != '%' ) out[print_cnt++] = c;
     }
-    // pre = *fmt;
     c = *(++fmt);
   }
 
