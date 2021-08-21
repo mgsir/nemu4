@@ -83,7 +83,7 @@ int sprintf(char *out, const char *fmt, ...) {
       if(num == 0) { out[print_cnt++] = '0';}
       else{
         int num_len = 0;
-        int arr_num[100];
+        int arr_num[1000];
         while(num)
         {
           num /= 10;
