@@ -68,6 +68,11 @@ static inline def_EHelper(xor){
   print_asm_template3(xor)
 }
 
+static inline def_EHelper(xori){
+  rtl_xori(s,ddest,dsrc1,id_src2->imm);
+  print_asm_template3(xori);
+}
+
 static inline def_EHelper(slt){
   rtl_setrelop(s,RELOP_LT,ddest,dsrc1,dsrc2);
   print_asm_template3(slt)

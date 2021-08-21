@@ -87,6 +87,7 @@ static inline def_EHelper(computei)
     }
     break;
     EX(0b011,sltiu)
+    EX(0b110,xori)
     EX(0b111,andi)
     break;
   }
